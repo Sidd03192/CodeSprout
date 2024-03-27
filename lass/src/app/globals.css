@@ -18,6 +18,20 @@
   pointer-events: none;
 }
 
+/* Add to your globals.css */
+.green_gradient {
+  /* ... other styles ... */
+  display: inline-block; /* if not already set */
+  line-height: normal; /* Adjust line height to ensure descenders are not cut off */
+  padding-bottom: 0.25rem; /* Add padding to the bottom, adjust as needed */
+}
+
+.fix-cut-off {
+  line-height: normal; /* Or a specific value that works */
+  padding-bottom: 0.25rem; /* Adjust as needed */
+}
+
+
 .main:before {
   background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
   position: absolute;
