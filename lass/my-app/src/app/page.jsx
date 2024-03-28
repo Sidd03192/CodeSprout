@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Landing() {
   return (
-    <section className="w-full inline-block text-center ">
+    <section className=" w-full inline-block text-center ">
 
       <h1 className="head_text text-center">
         <span className="mr-4 inline-block">Code Sprout</span>{" "}
