@@ -13,9 +13,10 @@ export default function Landing() {
           Cultivate Your Coding Potential
         </span>
       </h1>
-      <p className="desc text-center font-poppins">
-        LASS is a online ed-tech platform which helps students learn to code at lightning speeds.
-      </p>
+      <p className="desc font-poppins" style={{ margin: '0 auto' }}>
+  LASS is a online ed-tech platform which helps students learn to code at lightning speeds.
+</p>
+      
     </section>
   );
 }
