@@ -3,8 +3,8 @@ import '@/styles/globals.css'
 
 
 export const metadata ={
-    title:"Promptopia",
-    description:"Disover & Share AI Prompts"
+    title:"Code Sprout",
+    description:"Cultivate Your Coding"
 }
 const RootLayout = ({children}) => {
   return (

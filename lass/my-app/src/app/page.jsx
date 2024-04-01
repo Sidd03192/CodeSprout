@@ -10,7 +10,7 @@ export default function Landing() {
         {/* Added margin-right */}
         <br className="max-md:hidden" />
         <span className="green_gradient fix-cut-off inline-block">
-          Cultivate Your Coding Potential
+          Cultivate Your Coding
         </span>
       </h1>
       <p className="desc font-poppins" style={{ margin: '0 auto' }}>
