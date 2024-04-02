@@ -1,4 +1,5 @@
 import Image from "next/image";
+import WordOfTheDay from './WordOfTheDay.client'; // Import the new component
 
 export default function Landing() {
   return (
@@ -6,7 +7,6 @@ export default function Landing() {
       <section className="w-full inline-block text-center">
         <h1 className="head_text text-center">
           <span className="mr-4 inline-block text-white">Code Sprout</span>{" "}
-          {/* Added margin-right */}
           <br className="max-md:hidden" />
           <span className="green_gradient fix-cut-off inline-block">
             Cultivate Your Coding
@@ -16,6 +16,7 @@ export default function Landing() {
           LASS is a online ed-tech platform which helps students learn to code at lightning speeds.
         </p>
       </section>
+      <WordOfTheDay /> {/* Include the new component */}
     </div>
   );
 }
