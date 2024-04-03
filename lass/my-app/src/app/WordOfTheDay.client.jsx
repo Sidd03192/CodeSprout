@@ -45,16 +45,19 @@ function WordOfTheDay() {
       setTimeout(() => setShowConfetti(false), 5000); // Hide the confetti after 5 seconds
     } else {
       setMessage('Try again');
+      setGuess(''); // Clear the input field
+      document.getElementById('guessInput').classList.add('shake'); // Add the shake class
+      setTimeout(() => document.getElementById('guessInput').classList.remove('shake'), 500); // Remove the shake class after 0.5 seconds
     }
   };
-
+  
   if (!todayWord) return null;
 
   return (
     <div className="max-w-md mx-auto glassmorphism text-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3 p-5 mt-10 shadow-[0px_0px_20px_#00ff00] relative">
       {showConfetti && <Confetti className="absolute" />} {/* Show the confetti when showConfetti is true */}
-      <h2 className="font-bold text-xl mb-2">Word of the day</h2>
-      <p className="text-gray-300 text-base">Hint: {todayWord.hint}</p>
+      <h2 className="font-bold text-xl mb-2 text-center">Word of the day</h2>
+      <p className="text-gray-300 text-base text-center">Hint: {todayWord.hint}</p>
       {completed ? (
         <div className="mt-4">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-12 w-12 mx-auto text-green-500">
@@ -64,20 +67,33 @@ function WordOfTheDay() {
         </div>
       ) : (
         <form className="mt-4" onSubmit={handleGuess}>
-<input 
-  className="shadow appearance-none border rounded w-full py-4 px-3 text-gray-300 leading-normal focus:outline-none focus:shadow-outline bg-gray-700" 
-  type="text" 
-  value={guess} 
-  onChange={e => setGuess(e.target.value)} 
-  placeholder="Enter your guess here"
-/>          <button 
-            className="mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
-            type="submit"
-          >
-            Guess
-          </button>
-        </form>      )}
-      <p className="mt-4 text-red-500">{message}</p>
+  <input 
+    id="guessInput"
+    className="shadow appearance-none border rounded w-full py-4 px-3 text-gray-300 leading-normal focus:outline-none focus:shadow-outline bg-gray-700" 
+    type="text" 
+    value={guess} 
+    onChange={e => setGuess(e.target.value)} 
+    placeholder="Enter your guess here"
+  />
+  <div className="text-center">
+    <button 
+      className="mt-3 bg-blue-500 hover:bg-blue-700 hover:scale-110 transition-transform duration-200 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+      type="submit"
+    >
+      Guess
+    </button>
+  </div>
+</form>      )}
+      {message === 'Correct!' && (
+        <div className="text-center mt-4 text-green-500 text-2xl font-bold">
+          {message}
+        </div>
+      )}
+      {message === 'Try again' && (
+        <div className="text-center mt-4 text-red-500 text-2xl font-bold">
+          {message}
+        </div>
+      )}
     </div>
   );
 }
