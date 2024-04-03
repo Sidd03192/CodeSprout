@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import WordOfTheDay from './WordOfTheDay.client'; // Import the new component
+import { TypewriterEffectSmooth } from "./utils/typewriter";
 
 export default function Landing() {
   const words = [
@@ -34,6 +35,9 @@ export default function Landing() {
           LASS is a online ed-tech platform which helps students learn to code at lightning speeds.
         </p>
       </section>
+      <div className="text-center flex justify-center items-center w-screen mt-10 text-5xl">
+      <TypewriterEffectSmooth className="typewriter"words={words} />
+      </div>
       <WordOfTheDay /> {/* Include the new component */}
     </div>
   );

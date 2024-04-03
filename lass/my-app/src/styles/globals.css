@@ -124,7 +124,14 @@
 }
 
 .glassmorphism {
-  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+  @apply rounded-xl border border-gray-200 bg-white/10 backdrop-blur p-5;
+/* From https://css.glass */
+background: rgba(56, 49, 49, 0.316);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .prompt_layout {
@@ -177,4 +184,9 @@
 
 .flex-between {
   @apply flex justify-between items-center;
+}
+
+
+.tpyewriter:hover{
+  width: 150%;
 }
