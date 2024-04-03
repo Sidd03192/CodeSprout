@@ -1,13 +1,7 @@
 
 
 import Image from "next/image";
-import { TypewriterEffectSmooth } from "./utils/typewriter";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "./utils/wordOfTheDay"
+import WordOfTheDay from './WordOfTheDay.client'; // Import the new component
 
 export default function Landing() {
   const words = [
@@ -40,25 +34,7 @@ export default function Landing() {
           LASS is a online ed-tech platform which helps students learn to code at lightning speeds.
         </p>
       </section>
-      <div className="text-center flex justify-center items-center w-screen mt-10 text-5xl">
-      <TypewriterEffectSmooth words={words} />
-      <InputOTP maxLength={6}>
-  <InputOTPGroup>
-    <InputOTPSlot index={0} />
-    <InputOTPSlot index={1} />
-    <InputOTPSlot index={2} />
-  </InputOTPGroup>
-  <InputOTPSeparator />
-  <InputOTPGroup>
-    <InputOTPSlot index={3} />
-    <InputOTPSlot index={4} />
-    <InputOTPSlot index={5} />
-  </InputOTPGroup>
-</InputOTP>
-
-
-      </div>
-
+      <WordOfTheDay /> {/* Include the new component */}
     </div>
   );
 }
