@@ -51,7 +51,7 @@ function WordOfTheDay() {
   if (!todayWord) return null;
 
   return (
-    <div className="max-w-md mx-auto bg-gray-800 text-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3 p-5 mt-10 shadow-[0px_0px_20px_#00ff00] relative">
+    <div className="max-w-md mx-auto glassmorphism text-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3 p-5 mt-10 shadow-[0px_0px_20px_#00ff00] relative">
       {showConfetti && <Confetti className="absolute" />} {/* Show the confetti when showConfetti is true */}
       <h2 className="font-bold text-xl mb-2">Word of the day</h2>
       <p className="text-gray-300 text-base">Hint: {todayWord.hint}</p>
