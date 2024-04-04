@@ -1,6 +1,6 @@
 "use client"
 
-import { cn2 } from "./cn";
+import { cn2 } from "../app/utils/cn";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect } from "react";
 

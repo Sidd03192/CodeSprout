@@ -1,9 +1,10 @@
-
+"use client"
 
 import Image from "next/image";
-import WordOfTheDay from './WordOfTheDay.client'; // Import the new component
-import { TypewriterEffectSmooth } from "./utils/typewriter";
-
+import WordOfTheDay from '../components/WordOfTheDay.client'; // Import the new component
+import { TypewriterEffectSmooth } from "../components/typewriter";
+import { InfiniteMovingCardsDemo } from "../components/testemonials";
+import { Button } from "@nextui-org/react";
 export default function Landing() {
   const words = [
     {
@@ -38,7 +39,16 @@ export default function Landing() {
       <div className="text-center flex justify-center items-center w-screen mt-10 text-5xl">
       <TypewriterEffectSmooth className="typewriter"words={words} />
       </div>
+      <div className="flex justify-center mb-0">
+      <Button radius="full" className="bg-gradient-to-tr  from-blue-900 via-indigo-600 to-purple-900 text-white shadow-lg mr-10 mb-0">
+      I'm a Student
+    </Button>
+    <Button radius="full" className="bg-gradient-to-tr from-purple-900 via-indigo-600 to-blue-900 text-white shadow-lg ml-4">
+      I'm a Teacher
+    </Button>
+      </div>
       <WordOfTheDay /> {/* Include the new component */}
+      <InfiniteMovingCardsDemo/>
     </div>
   );
 }

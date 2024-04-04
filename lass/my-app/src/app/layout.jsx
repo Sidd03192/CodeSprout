@@ -1,4 +1,7 @@
+
 import '@/styles/globals.css'
+
+import {NextUIProvider} from "@nextui-org/react";
 
 
 
@@ -8,10 +11,14 @@ export const metadata ={
 }
 const RootLayout = ({children}) => {
   return (
+        
+    
+
     <html>
         <body>
 
-           
+
+          
             <div className="main">
                 <div className="gradient"/>
             </div>
@@ -23,6 +30,7 @@ const RootLayout = ({children}) => {
         </body>
       
     </html>
+    
   )
 }
 
