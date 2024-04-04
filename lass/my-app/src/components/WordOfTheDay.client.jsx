@@ -7,6 +7,20 @@ import Confetti from 'react-confetti';
 const words = [
   { word: 'algorithm', hint: 'A step-by-step procedure for calculations' },
   { word: 'binary', hint: 'Relating to a system of numerical notation that has 2 rather than 10 as a base' },
+  { word: 'computer', hint: 'An electronic device capable of storing and processing data' },
+  { word: 'network', hint: 'A system of interconnected computers and devices' },
+  { word: 'programming', hint: 'The process of writing code for software applications' },
+  { word: 'database', hint: 'A collection of data organized for rapid search and retrieval' },
+  { word: 'encryption', hint: 'The process of encoding information to protect it from unauthorized access' },
+  { word: 'server', hint: 'A computer or program that provides services to other computers over a network' },
+  { word: 'interface', hint: 'The point of interaction between a user and a computer system' },
+  { word: 'debugging', hint: 'The process of identifying and removing errors from software code' },
+  { word: 'virtualization', hint: 'The creation of a virtual version of a resource or device' },
+  { word: 'compiler', hint: 'A program that translates source code into machine code' },
+  { word: 'framework', hint: 'A set of tools and libraries used to develop software applications' },
+  { word: 'algorithmic complexity', hint: 'How the runtime of an algorithm increases with the size of the input' },
+  { word: 'version control', hint: 'The management of changes to documents, computer programs, and other collections of information' },
+  { word: 'recursion', hint: 'A programming technique where a function calls itself in order to solve problems' },
   // Add more words here
 ];
 
@@ -31,9 +45,12 @@ function WordOfTheDay() {
       setTimeout(() => setShowConfetti(false), 5000); // Hide the confetti after 5 seconds
     } else {
       setMessage('Try again');
+      setGuess(''); // Clear the input field
+      document.getElementById('guessInput').classList.add('shake'); // Add the shake class
+      setTimeout(() => document.getElementById('guessInput').classList.remove('shake'), 500); // Remove the shake class after 0.5 seconds
     }
   };
-
+  
   if (!todayWord) return null;
 
   return (
