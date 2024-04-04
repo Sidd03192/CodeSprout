@@ -5,7 +5,7 @@ import { InfiniteMovingCards } from "./testemonialsHelper";
 
 export function InfiniteMovingCardsDemo() {
   return (
-    <div className="h-[20rem] rounded-md flex flex-col dark:bg-dot-white/[0.2] bg-dot-black/[0.2] antialiased  items-center justify-center relative overflow-hidden">
+    <div className="h-[20rem] w-screen rounded-md flex flex-col dark:bg-dot-white/[0.2] bg-dot-black/[0.2] antialiased  items-center justify-center relative overflow-hidden">
       <InfiniteMovingCards
         items={testimonials}
         direction="right"
