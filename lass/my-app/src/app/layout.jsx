@@ -1,37 +1,25 @@
+"use client"
+import "../styles/globals.css"
 
-import '@/styles/globals.css'
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
-import {NextUIProvider} from "@nextui-org/react";
+const RootLayout = ({ children }) => {
 
 
-
-export const metadata ={
-    title:"Code Sprout",
-    description:"Cultivate Your Coding"
-}
-const RootLayout = ({children}) => {
   return (
-        
-    
-
     <html>
-        <body>
-
-
-          
-            <div className="main">
-                <div className="gradient"/>
-            </div>
-            <main className='app'>
-                {/* Gets Children from the page file. ( displays whatever u want) */}
-                {children}
-
-            </main>
-        </body>
-      
+      <body>
+        <div className="main ">
+          <div className="gradient" />
+        </div>
+        <main className='app'>
+          {/* Gets Children from the page file. ( displays whatever u want) */}
+          {children}
+        </main>
+      </body>
     </html>
-    
-  )
-}
+  );
+};
 
 export default RootLayout;

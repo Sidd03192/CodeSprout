@@ -21,6 +21,10 @@ export default function Landing() {
     },
   ];
   return (
+    <>
+    
+    
+    
     <div className="h-screen w-screen dark:bg-dot-white/[0.2] bg-dot-black/[0.2]">
       <section className="w-full inline-block text-center mb-100">
         <h1 className="head_text text-center">
@@ -47,6 +51,6 @@ export default function Landing() {
       </div>
       <WordOfTheDay /> {/* Include the new component */}
       <InfiniteMovingCardsDemo/>
-    </div>
+    </div></>
   );
 }
