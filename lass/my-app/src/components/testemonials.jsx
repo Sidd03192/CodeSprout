@@ -18,7 +18,7 @@ export function InfiniteMovingCardsDemo() {
 const testimonials = [
   {
     quote:
-      "I really like the UI. It's so easy to work with and extremely simple compared to competitors.",
+      "I really like the UI [user interface, AKA how it looks]. It's so easy to work with and extremely simple compared to competitors.",
     name: "Rayvan Alexander Watson Jr.",
     title: "CS Teacher @ Bridgeland High",
   },
