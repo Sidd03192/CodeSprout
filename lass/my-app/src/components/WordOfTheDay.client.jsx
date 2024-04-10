@@ -46,8 +46,6 @@ function WordOfTheDay() {
     } else {
       setMessage('Try again');
       setGuess(''); // Clear the input field
-      document.getElementById('guessInput').classList.add('shake'); // Add the shake class
-      setTimeout(() => document.getElementById('guessInput').classList.remove('shake'), 500); // Remove the shake class after 0.5 seconds
     }
   };
   
