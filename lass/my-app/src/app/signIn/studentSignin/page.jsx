@@ -17,9 +17,12 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure,} from "@nextui-org/react";
 import {Checkbox} from "@nextui-org/react";
-import { db } from "../../firebase/firebase";import { collection, addDoc } from 'firebase/firestore';
-import { doc,setDoc } from 'firebase/firestore';
+import { db } from "../../firebase/firebase";import { collection, addDoc, QueryStartAtConstraint, query } from 'firebase/firestore';
+import { doc,setDoc, getDocs } from 'firebase/firestore';
 import {Image} from "@nextui-org/react";
+import {Autocomplete, AutocompleteItem, } from "@nextui-org/react";
+import {DatePicker} from "@nextui-org/react";
+
 
 
 export default function Page() {
@@ -28,7 +31,7 @@ const [userData, setUserData] = useState({
   userName: "",
   userPicture: "",
   userId:"",
-  role: "",
+  role: "student",
   company: "",
   email: "",
   password: "",
@@ -40,7 +43,7 @@ const [Email, setEmail] = useState("");
 const [Password, setPassword] = useState("");
 const auth = getAuth();
 const [user, setUser] = useState(auth.currentUser);
-
+const [schools, setSchools] = useState([]);
 
 const toggleVisibility = () => setIsVisible(!isVisible);
 const [openSnackbar, setOpenSnackbar] = useState(false); // State for Snackbar visibility
@@ -111,6 +114,30 @@ const signInWithGoogle = async () => {
       handleSignInSuccess("Problem with Google Sign in ", "warning");
     }
 }
+
+
+// Move the declaration of 'schools' state inside the component
+
+// Modify the 'getSchools' function to set the 'schools' state with the fetched data
+const getSchools = async () => {
+  try {
+    const allSchools = [];
+    const querySnapshot = await getDocs(collection(db, "schools"));
+    querySnapshot.forEach((doc) => {
+      const newObject = { ...doc.data(), id: doc.id };
+      allSchools.push(newObject);
+    });
+    setSchools(allSchools); // Update 'schools' state
+    console.log(allSchools);
+  } catch (error) {
+    console.error("Error fetching collection data:", error);
+  }
+};
+
+// Call 'getSchools' inside the useEffect hook
+useEffect(() => {
+  getSchools(); // Fetch schools when component mounts
+}, []);
 
 
 
@@ -199,24 +226,19 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
 return (
 <div className="background-image">
  
       <div className=" login">
       
       <div className="input">
-        <h1 className='red_gradient head_text '> Sign up </h1>
-        <div className="logo">
-       <Image src="/logo.png" width={500} height={500} alt="" />
+        <h1 className='blue_gradient head_text '> Sign up </h1>
+        <div className='logo'>
+        <Image
+            src ="/logo.png"
+            width={300}
+            height={400}
+          ></Image>
         </div>
       <Input
             type="email"
@@ -293,18 +315,20 @@ return (
                   className="max-w-1/1"
                   onChange={(event) => setUserData({ ...userData, userName: event.target.value })}
                 />
-                <Input
-                  label="Company Name"
-                  value={userData.company}
-                  className="max-w-1/1"
-                  onChange={(event) => setUserData({ ...userData, company: event.target.value })}
-                />
-                <Input
-                  label="Company Role"
-                  value={userData.role}
-                  className="max-w-1/1"
-                  onChange={(event) => setUserData({ ...userData, role: event.target.value })}
-                />
+                
+                <Autocomplete 
+                  label="Select Your School" 
+                  className="max-w-xs" 
+                >
+                  {schools.map((school) => (
+                    <AutocompleteItem key={school.id} value={school.id}>
+                      {school.id}
+                    </AutocompleteItem>
+                  ))}
+                </Autocomplete> 
+                
+                
+                <DatePicker label={"Birth date"} variant="flat" />
 
                 <div className="input2-div">
                 
@@ -402,7 +426,7 @@ return (
       </div> 
 {/* button for submit */}
       {isLoginEnabled && (
-            <div className="buttonz">
+            <div className="buttons">
               <button 
               onClick={() =>( read && Password!=="" && Email!=="") ? handleSignIn() : handleSignInSuccess("Read Those Terms.. & Fill them Feilds-1", "warning")}
               className="space" type="button">

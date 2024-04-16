@@ -19,7 +19,7 @@ export const UserCard=(props)=> {
 
     
       <div style={{width:'35%', display:"flex"}}className="userImage">
-      {props.image!=null ? (
+      {/* {props.image!=null ? (
             <Image
                 alt="Album cover"
                 className="imagee"
@@ -35,7 +35,7 @@ export const UserCard=(props)=> {
                 src={require('../logo.png')} // Use default image if props.image is null
                 width="100%"
             />
-     )}
+     )} */}
   
         
       </div>
