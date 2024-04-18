@@ -32,10 +32,10 @@ const [userData, setUserData] = useState({
   userPicture: "",
   userId:"",
   role: "student",
-  company: "",
+  school: "",
   email: "",
   password: "",
-  correctQuestions: [0]
+  classrooms: [0]
 });
 
 const [isVisible, setIsVisible] = useState(false);
@@ -44,7 +44,8 @@ const [Password, setPassword] = useState("");
 const auth = getAuth();
 const [user, setUser] = useState(auth.currentUser);
 const [schools, setSchools] = useState([]);
-
+const [school, setSchool]=useState("");
+const [role, setRole]=useState("")
 const toggleVisibility = () => setIsVisible(!isVisible);
 const [openSnackbar, setOpenSnackbar] = useState(false); // State for Snackbar visibility
 const [snackbarMessage, setSnackbarMessage] = useState(""); // State for Snackbar message
@@ -136,6 +137,8 @@ const getSchools = async () => {
 
 // Call 'getSchools' inside the useEffect hook
 useEffect(() => {
+
+  console.log(school);
   getSchools(); // Fetch schools when component mounts
 }, []);
 
@@ -150,8 +153,8 @@ const updateUserDataInFirestore = (Email, displayName, photoURL) => {
     userPicture: photoURL,
     userId:userData.userId,
     role: userData.role,
-    company: userData.company,
-    correctQuestions: [0]
+    school: userData.school,
+    classrooms: [0]
 
     // Add other user details as needed
   }, { merge: true })
@@ -315,10 +318,13 @@ return (
                   className="max-w-1/1"
                   onChange={(event) => setUserData({ ...userData, userName: event.target.value })}
                 />
-                
+                <div>
                 <Autocomplete 
+                       selectedKey={school}
+                       className="max-w-xs"
+                       onSelectionChange={setSchool}
+
                   label="Select Your School" 
-                  className="max-w-xs" 
                 >
                   {schools.map((school) => (
                     <AutocompleteItem key={school.id} value={school.id}>
@@ -326,9 +332,11 @@ return (
                     </AutocompleteItem>
                   ))}
                 </Autocomplete> 
+
+                </div>
+             
                 
                 
-                <DatePicker label={"Birth date"} variant="flat" />
 
                 <div className="input2-div">
                 
@@ -345,7 +353,7 @@ return (
                 <div className= "userCardoutside">
                 <UserCard
                   userName={userData.userName}
-                  company={userData.company}
+                  company={userData.school}
                   role={userData.role}
                   image={userData.userPicture} // Pass the user picture as a prop
                 />
@@ -430,7 +438,7 @@ return (
               <button 
               onClick={() =>( read && Password!=="" && Email!=="") ? handleSignIn() : handleSignInSuccess("Read Those Terms.. & Fill them Feilds-1", "warning")}
               className="space" type="button">
-                <strong>LOGIN</strong>
+                <strong>CREATE ACCOUNT</strong>
                 <div id="container-stars">
                   <div id="stars"></div>
                 </div>

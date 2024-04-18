@@ -24,30 +24,25 @@
     align-items: center;
     width: 50%;
     text-align: center;
-   justify-content: center;
-   align-items: center;
+
 
   }
   .login{
     
     width: 55%;
-    height:screen;
+    height:100vh;
     display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
   }
   .logo{
-
-    margin-left: 15%;
+    margin-left: 9vh;
+  
     
   }
-  img {
-     /* Set the width to half of its container */
-    
 
-    left: 0; /* Position the image to the left side of its container */
-    top: 0; /* Position the image to the top of its container */
-  }
    .terms{
     margin-top: 5%;
     
@@ -94,18 +89,19 @@
     justify-content: space-between;
   }
  .buttons{
+  display: flex;
   align-items: center;
-  margin-left:5%;
  }
 
 
   .space{
     display: flex;
     margin-top: 10%;
-    margin-left:20% ;
+    margin-left: 10vh;
+
     justify-content: center;
     align-items: center;
-    width: 13rem;
+    width: 17rem;
     overflow: hidden;
     height: 3rem;
     background-size: 300% 300%;

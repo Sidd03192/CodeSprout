@@ -6,7 +6,7 @@ export const UserCard=(props)=> {
 
   return (
     <div className="userCardParent">
-      <h1>{props.company}</h1>
+
     
     <Card className="border-none bg-background/60 dark:bg-default-100/50 max-w-[610px]"
  
@@ -32,7 +32,7 @@ export const UserCard=(props)=> {
                 alt="Album cover"
                 className="imagee"
                 shadow="md"
-                src="/mascotLove.png" // Use default image if props.image is null
+                src={require('../app/signIn/mascotLove.png')} // Use default image if props.image is null
                 width="100%"
             />
      )}
@@ -41,7 +41,7 @@ export const UserCard=(props)=> {
       </div>
       <div className="info">
       <h2 className="user">{props.userName}</h2>
-      <h3 className="company">{props.company}</h3>
+      <h3 className="company">{props.school}</h3>
       <h4 className="role">{props.role}</h4>
     </div>
       
