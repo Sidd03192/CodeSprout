@@ -108,11 +108,11 @@ const signInWithGoogle = async () => {
       updateUserDataInFirestore(email, displayName, photoURL);
 
       // Handle sign-in success
-      handleSignInSuccess("Google sign-in successful!", "success");
+      handleSignInSuccess("Google Sign-In Successful!", "success");
 
     } catch (err) {
       console.error("Google Sign-In Error:", err.message);
-      handleSignInSuccess("Problem with Google Sign in ", "warning");
+      handleSignInSuccess("Google Sign-In Unsuccessful", "warning");
     }
 }
 
@@ -204,11 +204,11 @@ const handleSignIn = async (event) => {
     createUser();
     
       cookies.set("auth-token", result.user.refreshToken);
-      handleSignInSuccess("Account Created !", "success");  
+      handleSignInSuccess("Account Created!", "success");  
     
   } catch (err) {
     console.error("Email/Password Sign-In Error:", err.message);
-    handleSignInSuccess("Problem Creating Account. Make sure your Password is 6+ characters! ", "warning");
+    handleSignInSuccess("Problem Creating Account. Ensure Your Password is 6+ characters!", "warning");
   }
 };
 
@@ -235,7 +235,7 @@ return (
       <div className=" login">
       
       <div className="input">
-        <h1 className='blue_gradient head_text '> Sign up </h1>
+        <h1 className='blue_gradient head_text '> Sign Up </h1>
         <div className='logo'>
         <Image
             src ="/logo.png"
@@ -258,7 +258,7 @@ return (
       <Input
         label="Password"
         className="password"
-        placeholder="Enter your password"
+        placeholder="Enter Your Password"
         endContent={
           <button className="focus:outline-none " type="button" onClick={toggleVisibility}>
             {isVisible ? (
@@ -436,7 +436,7 @@ return (
       {isLoginEnabled && (
             <div className="buttons">
               <button 
-              onClick={() =>( read && Password!=="" && Email!=="") ? handleSignIn() : handleSignInSuccess("Read Those Terms.. & Fill them Feilds-1", "warning")}
+              onClick={() =>( read && Password!=="" && Email!=="") ? handleSignIn() : handleSignInSuccess("Read Those Terms.. & Fill them Fields-1", "warning")}
               className="space" type="button">
                 <strong>CREATE ACCOUNT</strong>
                 <div id="container-stars">
