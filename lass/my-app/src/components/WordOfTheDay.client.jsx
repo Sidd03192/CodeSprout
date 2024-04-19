@@ -48,7 +48,7 @@ function WordOfTheDay() {
       setGuess(''); // Clear the input field
     }
   };
-  
+
   if (!todayWord) return null;
 
   return (
@@ -65,28 +65,28 @@ function WordOfTheDay() {
         </div>
       ) : (
         <form className="mt-4 " onSubmit={handleGuess}>
-<div class="relative">
-  <input 
-    className="text-center appearance-none w-full py-4 px-3 text-gray-300 leading-normal bg-transparent focus:outline-none focus:shadow-outline"
-    type="text" 
-    value={guess} 
-    onChange={e => setGuess(e.target.value)} 
-    placeholder="Enter your guess here"
-  />
-  <div class="absolute bottom-0 left-0 right-0 h-1">
-    <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500"></div>
-  </div>
-</div>
-       <div className="mt-3 flex justify-center">
-  <button 
-    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-    type="submit"
-  >
-    Guess
-  </button>
-</div>
+          <div class="relative">
+            <input
+              className="text-center appearance-none w-full py-4 px-3 text-gray-300 leading-normal bg-transparent focus:outline-none focus:shadow-outline"
+              type="text"
+              value={guess}
+              onChange={e => setGuess(e.target.value)}
+              placeholder="Enter your guess here"
+            />
+            <div class="absolute bottom-0 left-0 right-0 h-1">
+              <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500"></div>
+            </div>
+          </div>
+          <div className="mt-3 flex justify-center">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Guess
+            </button>
+          </div>
 
-        </form>      )}
+        </form>)}
       <p className="mt-4 text-red-500">{message}</p>
     </div>
   );

@@ -9,11 +9,11 @@ const LoginLayout = ({ children }) => {
 
   return (
     <html>
-        <body >
-   
-            
-                {children}
-       
+      <body >
+
+
+        {children}
+
       </body>
     </html>
   );
