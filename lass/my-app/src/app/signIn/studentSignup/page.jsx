@@ -36,6 +36,7 @@ const [userData, setUserData] = useState({
   email: "",
   password: "",
   classrooms: [0]
+  
 });
 
 const [isVisible, setIsVisible] = useState(false);
@@ -68,19 +69,14 @@ useEffect(() => {
   return () => unsubscribe();
 }, []);
 
-const handleEmailChange = (event) => {
-  setEmail(event.target.value);
-};
-
-const handlePasswordChange = (event) => {
-  setPassword(event.target.value);
-};
+console.log(userData.email);
 
 const handleSignInSuccess = (message, fortune) => {
   setOpenSnackbar(true); // Open the Snackbar
   setSnackbarMessage(message); // Set the Snackbar message
   setSuccess(fortune); // Set the
 };
+
 
 const signInWithGoogle = async () => {
 
@@ -153,7 +149,7 @@ const updateUserDataInFirestore = (Email, displayName, photoURL) => {
     userPicture: photoURL,
     userId:userData.userId,
     role: userData.role,
-    school: userData.school,
+    school: school,
     classrooms: [0]
 
     // Add other user details as needed
@@ -187,21 +183,22 @@ const userImageUpload = (event) => {
     reader.readAsDataURL(file); // Read the file as a data URL (base64)
   }
 };
-const validateEmail = (Email) => Email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+const validateEmail = (email) => userData.email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
   const isInvalid = React.useMemo(() => {
-    if (Email === "") return false;
+    if (userData.email === "") return false;
 
-    return validateEmail(Email) ? false : true;
-  }, [Email]);
+    return validateEmail(userData.email) ? false : true;
+  }, [userData.email]);
 
 const handleSignIn = async (event) => {
   console.log("attempting sign up");
+  createUser();
+
   try {
-    const result = await createUserWithEmailAndPassword(auth, Email, Password);
+    const result = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
     console.log("create user result:", result);
     
 
-    createUser();
     
       cookies.set("auth-token", result.user.refreshToken);
       handleSignInSuccess("Account Created !", "success");  
@@ -219,6 +216,7 @@ const createUser = async () => {
 try {
   const docRef = await addDoc(collection(db, 'users'), {
     ...userData,
+    skool:school,
   });
   console.log('Document written with ID:', docRef.id);
 } catch (error) {
@@ -251,7 +249,7 @@ return (
             startContent={
               <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }
-            onChange={handleEmailChange}
+            onChange={(event) => setUserData({ ...userData, email: event.target.value })}
             color={isInvalid ? "danger" : ""}
       errorMessage={isInvalid && "Please enter a valid email"}
       />
@@ -269,7 +267,7 @@ return (
           </button>
         }
         type={isVisible ? "text" : "password"}
-        onChange={handlePasswordChange}
+        onChange={(event) => setUserData({ ...userData, password: event.target.value })}
 
       />
       <div className="terms">
@@ -436,7 +434,7 @@ return (
       {isLoginEnabled && (
             <div className="buttons">
               <button 
-              onClick={() =>( read && Password!=="" && Email!=="") ? handleSignIn() : handleSignInSuccess("Read Those Terms.. & Fill them Feilds-1", "warning")}
+              onClick={() =>( read && userData.password!=="" && userData.email!=="") ? handleSignIn() : handleSignInSuccess("Read Those Terms.. & Fill them Feilds-1", "warning")}
               className="space" type="button">
                 <strong>CREATE ACCOUNT</strong>
                 <div id="container-stars">
