@@ -63,7 +63,7 @@ export const TypewriterEffect = ({
 
   return (
     <div
-      
+
     >
       {renderWords()}
       <motion.span
@@ -78,7 +78,7 @@ export const TypewriterEffect = ({
           repeat: Infinity,
           repeatType: "reverse",
         }}
-        
+
       ></motion.span>
     </div>
   );
@@ -94,7 +94,7 @@ export const TypewriterEffectSmooth = ({
     ...word,
     text: word.text.split(""),
   })) : [];
-  
+
   const renderWords = () => {
     return (
       <div>
@@ -123,19 +123,19 @@ export const TypewriterEffectSmooth = ({
         className="overflow-hidden pb-2"
         initial={{
           width: "0%",
-          scale:1,
+          scale: 1,
         }}
         animate={{
           width: "fit-content",
-          scale:1.1,
-                  
+          scale: 1.1,
+
         }}
         transition={{
           duration: 2,
           ease: "linear",
-          delay: 1,       
+          delay: 1,
         }}
-        
+
       >
         <div
           className=" md:text-5xl lg:text:5xl xl:text-5xl font-bold"
@@ -149,11 +149,11 @@ export const TypewriterEffectSmooth = ({
       <motion.span
         initial={{
           opacity: 0,
-          scale:1,
+          scale: 1,
         }}
         animate={{
           opacity: 1,
-          scale:1.5
+          scale: 1.5
         }}
         transition={{
           duration: 0.8,
