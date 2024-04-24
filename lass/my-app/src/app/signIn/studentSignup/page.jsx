@@ -21,7 +21,7 @@ import { db } from "../../firebase/firebase"; import { collection, addDoc, Query
 import { doc, setDoc, getDocs } from 'firebase/firestore';
 import { Image } from "@nextui-org/react";
 import { Autocomplete, AutocompleteItem, } from "@nextui-org/react";
-import { DatePicker } from "@nextui-org/react";
+import {animals} from "../data";
 
 
 
@@ -57,6 +57,28 @@ const {isOpen, onOpen, onOpenChange} = useDisclosure();
 const [read, setRead]=useState(false);
 const isLoginEnabled = true;
 const scrollBehavior ="outside";
+console.log(schools);
+const getSchools = async () => {
+  try {
+    const allSchools = [];
+    const querySnapshot = await getDocs(collection(db, "schools"));
+    querySnapshot.forEach((doc) => {
+      const newObject = { ...doc.data(), id: doc.id };
+      allSchools.push(newObject);
+    });
+    setSchools(allSchools); // Update 'schools' state
+    console.log(allSchools);
+  } catch (error) {
+    console.error("Error fetching collection data:", error);
+  }
+};
+
+// Call 'getSchools' inside the useEffect hook
+useEffect(() => {
+
+  console.log(school);
+  getSchools(); // Fetch schools when component mounts
+}, []);
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, (authUser) => {
     setUser(authUser);
@@ -66,7 +88,9 @@ useEffect(() => {
     }
   });
 })
- 
+const setSkhool = (id) => {
+  setSchool(id);
+};
 const signInWithGoogle = async () => {
 
 
@@ -180,6 +204,7 @@ const handleSignIn = async (event) => {
     try {
       const docRef = await addDoc(collection(db, 'users'), {
         ...userData,
+        
       });
       console.log('Document written with ID:', docRef.id);
     } catch (error) {
@@ -279,8 +304,10 @@ const handleSignIn = async (event) => {
                     <div>
                       <Autocomplete
                         selectedKey={school}
+                        defaultItems={animals}
+
                         className="max-w-xs"
-                        onSelectionChange={setSchool}
+                        onSelectionChange={setSkhool}
 
                         label="Select Your School"
                       >
