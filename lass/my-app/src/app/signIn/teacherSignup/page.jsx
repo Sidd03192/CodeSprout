@@ -187,24 +187,6 @@ const handleSignIn = async (event) => {
     }
 
   }
-};
-
-
-const createUser = async () => {
-  console.log('userData:', userData);
-
-try {
-  const docRef = await addDoc(collection(db, 'users'), {
-    ...userData,
-    skool:school,
-  });
-  console.log('Document written with ID:', docRef.id);
-} catch (error) {
-  console.error('Error adding document:', error);
-}
-
-} 
-
 
 
   return (
@@ -441,6 +423,14 @@ try {
     </div>
 
   )
+};
+
+
+
+
+
+
+ 
 
 
 
