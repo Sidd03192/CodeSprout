@@ -92,7 +92,7 @@
       background: #ffffff;
       border-radius: 2px;
       transition: all 0.45s ease-in-out;
-      z-index: 1000;
+      /* z-index: 1000; */
     }
   
     .nav-toggle > .bar::before {
