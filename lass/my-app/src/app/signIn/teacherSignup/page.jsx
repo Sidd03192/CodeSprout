@@ -27,63 +27,47 @@ import { DatePicker } from "@nextui-org/react";
 
 export default function Page() {
   const cookies = new Cookies();
-  const [userData, setUserData] = useState({
-    userName: "",
-    userPicture: "",
-    userId: "",
-    role: "teacher",
-    school: "",
-    email: "",
-    password: "",
+const [userData, setUserData] = useState({
+  userName: "",
+  userPicture: "",
+  userId:"",
+  role: "teacher",
+  school: "",
+  email: "",
+  password: "",
+  classrooms: [0]
+  
+});
 
-    classrooms: [0]
+const [isVisible, setIsVisible] = useState(false);
+const [Email, setEmail] = useState("");
+const [Password, setPassword] = useState("");
+const auth = getAuth();
+const [user, setUser] = useState(auth.currentUser);
+const [schools, setSchools] = useState([]);
+const [school, setSchool]=useState("");
+const [role, setRole]=useState("")
+const toggleVisibility = () => setIsVisible(!isVisible);
+const [openSnackbar, setOpenSnackbar] = useState(false); // State for Snackbar visibility
+const [snackbarMessage, setSnackbarMessage] = useState(""); // State for Snackbar message
+const vertical ="top"
+const horizontal="center"
+const [success, setSuccess] = useState("")
+const {isOpen, onOpen, onOpenChange} = useDisclosure();
+const [read, setRead]=useState(false);
+const isLoginEnabled = true;
+const scrollBehavior ="outside";
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+    setUser(authUser);
+    if (authUser != null) {
+      cookies.set("auth-token", authUser.refreshToken); //navigate("./dash");
+      
+    }
   });
-
-  const [isVisible, setIsVisible] = useState(false);
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
-  const auth = getAuth();
-  const [user, setUser] = useState(auth.currentUser);
-  const [schools, setSchools] = useState([]);
-  const [school, setSchool] = useState("");
-  const [role, setRole] = useState("")
-  const toggleVisibility = () => setIsVisible(!isVisible);
-  const [openSnackbar, setOpenSnackbar] = useState(false); // State for Snackbar visibility
-  const [snackbarMessage, setSnackbarMessage] = useState(""); // State for Snackbar message
-  const vertical = "top"
-  const horizontal = "center"
-  const [success, setSuccess] = useState("")
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [read, setRead] = useState(false);
-  const isLoginEnabled = true;
-  const scrollBehavior = "outside";
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
-      setUser(authUser);
-      if (authUser != null) {
-        cookies.set("auth-token", authUser.refreshToken); //navigate("./dash");
-
-      }
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleSignInSuccess = (message, fortune) => {
-    setOpenSnackbar(true); // Open the Snackbar
-    setSnackbarMessage(message); // Set the Snackbar message
-    setSuccess(fortune); // Set the
-  };
-
-  const signInWithGoogle = async () => {
+})
+ 
+const signInWithGoogle = async () => {
 
 
     try {
@@ -109,107 +93,83 @@ export default function Page() {
       updateUserDataInFirestore(email, displayName, photoURL);
 
       // Handle sign-in success
-      handleSignInSuccess("Google Sign-In Successful!", "success");
+      handleSignInSuccess("Google sign-in successful!", "success");
 
     } catch (err) {
       console.error("Google Sign-In Error:", err.message);
-      handleSignInSuccess("Google Sign-In Unsuccessful", "warning");
+      handleSignInSuccess("Problem with Google Sign in ", "warning");
     }
   }
 
 
   // Move the declaration of 'schools' state inside the component
 
-  // Modify the 'getSchools' function to set the 'schools' state with the fetched data
-  const getSchools = async () => {
-    try {
-      const allSchools = [];
-      const querySnapshot = await getDocs(collection(db, "schools"));
-      querySnapshot.forEach((doc) => {
-        const newObject = { ...doc.data(), id: doc.id };
-        allSchools.push(newObject);
-      });
-      setSchools(allSchools); // Update 'schools' state
-      console.log(allSchools);
-    } catch (error) {
-      console.error("Error fetching collection data:", error);
-    }
+const updateUserDataInFirestore = (Email, displayName, photoURL) => {
+  const userDocRef = doc(db, 'users', auth.currentUser.uid);
+
+  setDoc(userDocRef, {
+    email: Email,
+    userName: displayName,
+    userPicture: photoURL,
+    userId:userData.userId,
+    role: userData.role,
+    school: school,
+    classrooms: [0]
+
+    // Add other user details as needed
+  }, { merge: true })
+  .then(() => {
+    console.log("User data updated in Firestore successfully");
+  })
+  .catch((error) => {
+    console.error("Error updating user data in Firestore:", error);
+  });
+};
+
+
+const handleCheckboxChange = () => {
+  console.log("Checkbox changed");
+};
+
+const userImageUpload = (event) => {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+    // Update the user picture state with the base64 representation of the uploaded image
+    setUserData(prevState => ({
+      ...prevState,
+      userPicture: reader.result
+    }));
   };
 
-  // Call 'getSchools' inside the useEffect hook
-  useEffect(() => {
-
-    console.log(school);
-    getSchools(); // Fetch schools when component mounts
-  }, []);
-
-
-
-  const updateUserDataInFirestore = (Email, displayName, photoURL) => {
-    const userDocRef = doc(db, 'users', auth.currentUser.uid);
-
-    setDoc(userDocRef, {
-      email: Email,
-      userName: displayName,
-      userPicture: photoURL,
-      userId: userData.userId,
-      role: userData.role,
-      school: userData.school,
-      classrooms: [0]
-
-      // Add other user details as needed
-    }, { merge: true })
-      .then(() => {
-        console.log("User data updated in Firestore successfully");
-      })
-      .catch((error) => {
-        console.error("Error updating user data in Firestore:", error);
-      });
-  };
-
-
-  const handleCheckboxChange = () => {
-    console.log("Checkbox changed");
-  };
-
-  const userImageUpload = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      // Update the user picture state with the base64 representation of the uploaded image
-      setUserData(prevState => ({
-        ...prevState,
-        userPicture: reader.result
-      }));
-    };
-
-    if (file) {
-      reader.readAsDataURL(file); // Read the file as a data URL (base64)
-    }
-  };
-  const validateEmail = (Email) => Email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+  if (file) {
+    reader.readAsDataURL(file); // Read the file as a data URL (base64)
+  }
+};
+const validateEmail = (email) => userData.email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
   const isInvalid = React.useMemo(() => {
-    if (Email === "") return false;
+    if (userData.email === "") return false;
 
-    return validateEmail(Email) ? false : true;
-  }, [Email]);
+    return validateEmail(userData.email) ? false : true;
+  }, [userData.email]);
 
-  const handleSignIn = async (event) => {
-    console.log("attempting sign up");
-    try {
-      const result = await createUserWithEmailAndPassword(auth, Email, Password);
-      console.log("create user result:", result);
+const handleSignIn = async (event) => {
+  console.log("attempting sign up");
+  createUser();
 
+  try {
+    const result = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+    console.log("create user result:", result);
+    
 
-      createUser();
-
+    
       cookies.set("auth-token", result.user.refreshToken);
-      handleSignInSuccess("Account Created!", "success");
+      handleSignInSuccess("Account Created !", "success");
 
     } catch (err) {
       console.error("Email/Password Sign-In Error:", err.message);
-      handleSignInSuccess("Problem Creating Account. Ensure Your Password is 6+ characters!", "warning");
+      handleSignInSuccess("Problem Creating Account. Make sure your Password is 6+ characters! ", "warning");
     }
   };
 
@@ -227,6 +187,23 @@ export default function Page() {
     }
 
   }
+};
+
+
+const createUser = async () => {
+  console.log('userData:', userData);
+
+try {
+  const docRef = await addDoc(collection(db, 'users'), {
+    ...userData,
+    skool:school,
+  });
+  console.log('Document written with ID:', docRef.id);
+} catch (error) {
+  console.error('Error adding document:', error);
+}
+
+} 
 
 
 
@@ -236,7 +213,7 @@ export default function Page() {
       <div className=" login">
 
         <div className="input">
-          <h1 className='blue_gradient head_text '> Sign Up </h1>
+          <h1 className='blue_gradient head_text '> Sign up </h1>
           <div className='logo'>
             <Image
               src="/logo.png"
@@ -252,25 +229,25 @@ export default function Page() {
             startContent={
               <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }
-            onChange={handleEmailChange}
+            onChange={(event) => setUserData({ ...userData, email: event.target.value })}
             color={isInvalid ? "danger" : ""}
-            errorMessage={isInvalid && "Please enter a valid email"}
-          />
-          <Input
-            label="Password"
-            className="password"
-            placeholder="Enter Your Password"
-            endContent={
-              <button className="focus:outline-none " type="button" onClick={toggleVisibility}>
-                {isVisible ? (
-                  <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                ) : (
-                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                )}
-              </button>
-            }
-            type={isVisible ? "text" : "password"}
-            onChange={handlePasswordChange}
+      errorMessage={isInvalid && "Please enter a valid email"}
+      />
+      <Input
+        label="Password"
+        className="password"
+        placeholder="Enter your password"
+        endContent={
+          <button className="focus:outline-none " type="button" onClick={toggleVisibility}>
+            {isVisible ? (
+              <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+            ) : (
+              <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+            )}
+          </button>
+        }
+        type={isVisible ? "text" : "password"}
+        onChange={(event) => setUserData({ ...userData, password: event.target.value })}
 
           />
           <div className="terms">
@@ -436,9 +413,9 @@ export default function Page() {
           {/* button for submit */}
           {isLoginEnabled && (
             <div className="buttons">
-              <button
-                onClick={() => (read && Password !== "" && Email !== "") ? handleSignIn() : handleSignInSuccess("Read Those Terms.. & Fill them Fields-1", "warning")}
-                className="space" type="button">
+              <button 
+              onClick={() =>( read && userData.password!=="" && userData.email!=="") ? handleSignIn() : handleSignInSuccess("Read Those Terms.. & Fill them Feilds-1", "warning")}
+              className="space" type="button">
                 <strong>CREATE ACCOUNT</strong>
                 <div id="container-stars">
                   <div id="stars"></div>
@@ -467,4 +444,3 @@ export default function Page() {
 
 
 
-}

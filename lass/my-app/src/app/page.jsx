@@ -25,8 +25,11 @@ export default function Landing() {
     <>
 
 
+    <div className=" h-screen w-screen dark:bg-dot-white/[0.2] bg-dot-black/[0.2] fixed">
+    </div> 
 
-      <div className="h-screen w-screen dark:bg-dot-white/[0.2] bg-dot-black/[0.2]">
+    
+      <div className="h-screen w-screen  sticky z-10">
         <section className="w-full inline-block text-center mb-100">
           <h1 className="head_text text-center">
             <span className="mr-4 inline-block text-white">Code Sprout</span>{" "}
@@ -58,6 +61,9 @@ export default function Landing() {
         </div>
         <WordOfTheDay /> {/* Include the new component */}
         <InfiniteMovingCardsDemo />
-      </div></>
+      </div>
+      
+      
+      </>
   );
 }
