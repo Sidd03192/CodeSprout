@@ -66,12 +66,12 @@ export const InfiniteMovingCards = ({
 
   return (
     <div
-    ref={containerRef}
-    className={cn3(
-      "scroller relative z-20 w-screen overflow-hidden mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)",
-      className
-    )}
-  >
+      ref={containerRef}
+      className={cn3(
+        "scroller relative z-20 w-screen overflow-hidden mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)",
+        className
+      )}
+    >
       <ul
         ref={scrollerRef}
         className={cn3(
@@ -83,7 +83,7 @@ export const InfiniteMovingCards = ({
         {items.map((item, idx) => (
           <li
             id="monkey"
-            className="transform hover:scale-125 w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
+            className="transform w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
             style={{
               background:
                 "linear-gradient(180deg, var(--slate-800), var(--slate-900)",

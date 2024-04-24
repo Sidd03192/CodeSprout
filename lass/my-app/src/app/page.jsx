@@ -1,5 +1,9 @@
 import Image from "next/image";
-
+import Link from "next/link";
+import WordOfTheDay from '../components/WordOfTheDay.client'; // Import the new component
+import { TypewriterEffectSmooth } from "../components/typewriter";
+import { InfiniteMovingCardsDemo } from "../components/testemonials";
+import { Button } from "@nextui-org/react";
 export default function Landing() {
   return (
     <div className="h-screen w-screen dark:bg-dot-white/[0.2] bg-dot-black/[0.2]">

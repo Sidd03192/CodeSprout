@@ -19,7 +19,7 @@ const testimonials = [
   {
     quote:
       "I really like the UI [user interface, AKA how it looks]. It's so easy to work with and extremely simple compared to competitors.",
-    name: "Rayvan Alexander Watson Jr.",
+    name: "Alejandro Garcia",
     title: "CS Teacher @ Bridgeland High",
   },
   {
