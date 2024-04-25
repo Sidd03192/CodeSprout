@@ -124,7 +124,11 @@ const signInWithGoogle = async () => {
       handleSignInSuccess("Problem with Google Sign in ", "warning");
     }
   }
-
+  const handleSignInSuccess = (message, fortune) => {
+    setOpenSnackbar(true); // Open the Snackbar
+    setSnackbarMessage(message); // Set the Snackbar message
+    setSuccess(fortune); // Set the
+  };
 
   // Move the declaration of 'schools' state inside the component
 
