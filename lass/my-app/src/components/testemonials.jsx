@@ -33,7 +33,7 @@ const testimonials = [
     quote:
       "Hop on hell divers... Ill grade these tests later.",
     name: "Mr. Rayvan Alexander Watson Jr.",
-    title: "CS Teacuer @ Bridgeland High",
+    title: "CS Teacher @ Bridgeland High",
   },
   {
     quote: "This website changed the way I give assignments. It is the first truly functional platform that I can safely give coding tests on, and it has been integral for me to help students understand rather than just learn AI.",
