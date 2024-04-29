@@ -31,7 +31,7 @@ const testimonials = [
 
   {
     quote:
-      "Hop on hell divers... Ill grade these tests later.",
+      "Hop on Helldivers, I'll grade these tests later.",
     name: "Mr. Rayvan Alexander Watson Jr.",
     title: "CS Teacher @ Bridgeland High",
   },
