@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import { getAuth } from "firebase/auth";
+import { Avatar } from "@nextui-org/react";
 import "@/components/Nav.css";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +12,8 @@ const Navbar = () => {
         <a href="/home">Home</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
+        <Avatar isBordered color="secondary" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
+
       
       </div>
       <div

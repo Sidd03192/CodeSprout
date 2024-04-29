@@ -27,6 +27,7 @@ import {animals} from "../data";
 
 export default function Page() {
   const cookies = new Cookies();
+  const ath = getAuth();
 const [userData, setUserData] = useState({
   userName: "",
   userPicture: "",
@@ -89,7 +90,11 @@ useEffect(() => {
   });
 })
 const setSkhool = (id) => {
-  setSchool(id);
+  setUserData({...userData, school:id});
+  setUserData({...userData, school:id});
+
+  console.log(userData.school);
+
 };
 const signInWithGoogle = async () => {
 
@@ -104,6 +109,8 @@ const signInWithGoogle = async () => {
 
       // Update states with the extracted user information
       setEmail(email);
+      setUserData({...userData, email:email, userId:ath.currentUser.uid})
+
       setUserData(prevState => ({
         ...prevState,
         userName: displayName,
@@ -137,7 +144,7 @@ const updateUserDataInFirestore = (Email, displayName, photoURL) => {
     userPicture: photoURL,
     userId:userData.userId,
     role: userData.role,
-    school: school,
+    school: ath.currentUser.uid,
     classrooms: [0]
 
     // Add other user details as needed
@@ -303,7 +310,7 @@ const handleSignIn = async (event) => {
                     />
                     <div>
                       <Autocomplete
-                        selectedKey={school}
+                        selectedKey={userData.school}
                         defaultItems={animals}
 
                         className="max-w-xs"

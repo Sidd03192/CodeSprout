@@ -6,7 +6,6 @@ export const UserCard=(props)=> {
 
   return (
     <div className="userCardParent">
-      <h1>{props.company}</h1>
     
     <Card className="border-none bg-background/60 dark:bg-default-100/50 max-w-[610px]"
  
