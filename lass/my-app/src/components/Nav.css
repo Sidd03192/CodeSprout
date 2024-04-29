@@ -1,19 +1,12 @@
 .Navbar {
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #30354b;
-  position: fixed; /* Stays at the top */
-  top: 0; /* Align to the top */
-  left: 0; /* Align to the left */
-  right: 0; /* Stretch across the full width */
-  z-index: 1000; /* High z-index to stay on top */
-}
-
-
-
-
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #30354b;
+    position: sticky;
+  }
+  
   .Navbar > .nav-logo {
     font-weight: 700;
     font-size: 21px;
@@ -29,7 +22,6 @@
     position: relative;
     opacity: 0.9;
   }
-
   
   .Navbar > .nav-items > a:hover {
     opacity: 1;
