@@ -5,24 +5,24 @@ import Confetti from 'react-confetti';
 
 // This could be fetched from a server
 const words = [
-  { word: 'algorithm', hint: 'A step-by-step procedure for calculations' },
-  { word: 'binary', hint: 'Relating to a system of numerical notation that has 2 rather than 10 as a base' },
-  { word: 'computer', hint: 'An electronic device capable of storing and processing data' },
-  { word: 'network', hint: 'A system of interconnected computers and devices' },
-  { word: 'programming', hint: 'The process of writing code for software applications' },
-  { word: 'database', hint: 'A collection of data organized for rapid search and retrieval' },
-  { word: 'encryption', hint: 'The process of encoding information to protect it from unauthorized access' },
-  { word: 'server', hint: 'A computer or program that provides services to other computers over a network' },
-  { word: 'interface', hint: 'The point of interaction between a user and a computer system' },
-  { word: 'debugging', hint: 'The process of identifying and removing errors from software code' },
-  { word: 'virtualization', hint: 'The creation of a virtual version of a resource or device' },
-  { word: 'compiler', hint: 'A program that translates source code into machine code' },
-  { word: 'framework', hint: 'A set of tools and libraries used to develop software applications' },
-  { word: 'algorithmic complexity', hint: 'How the runtime of an algorithm increases with the size of the input' },
-  { word: 'version control', hint: 'The management of changes to documents, computer programs, and other collections of information' },
-  { word: 'recursion', hint: 'A programming technique where a function calls itself in order to solve problems' },
-  // Add more words here
+  { word: 'polymorphism', hint: 'A programming language feature that allows values of different data types to be handled using a uniform interface' },
+  { word: 'heuristic', hint: 'A technique designed for solving a problem more quickly when classic methods are too slow' },
+  { word: 'concurrency', hint: 'The execution of the multiple instruction sequences at the same time' },
+  { word: 'idempotence', hint: 'A property of certain operations in mathematics and computer science, that can be applied multiple times without changing the result beyond the initial application' },
+  { word: 'memoization', hint: 'An optimization technique used primarily to speed up computer programs by storing the results of expensive function calls' },
+  { word: 'abstraction', hint: 'A method of arranging complexity of computer systems. It works by establishing a level of complexity on which a person interacts with the system, suppressing the more complex details below the current level' },
+  { word: 'encapsulation', hint: 'The bundling of data with the methods that operate on that data' },
+  { word: 'pseudocode', hint: 'An informal high-level description of the operating principle of a computer program or other algorithm' },
+  { word: 'refactoring', hint: 'The process of restructuring existing computer code without changing its external behavior' },
+  { word: 'big O notation', hint: 'A mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity' },
+  { word: 'recursion', hint: 'A method where the solution to a problem depends on solutions to smaller instances of the same problem' },
+  { word: 'data structure', hint: 'A data organization, management, and storage format that enables efficient access and modification' },
+  { word: 'inheritance', hint: 'A mechanism of basing an object or class upon another object or class' },
+  { word: 'algorithmic complexity', hint: 'A measure of the computational resources needed by an algorithm to solve a problem' },
+  { word: 'version control', hint: 'A system that records changes to a file or set of files over time so that you can recall specific versions later' },
+  { word: 'recursion', hint: 'The process a procedure goes through when one of the steps of the procedure involves invoking the procedure itself' },
 ];
+
 
 function WordOfTheDay() {
   const [todayWord, setTodayWord] = useState(null);
