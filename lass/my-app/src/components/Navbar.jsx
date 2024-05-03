@@ -12,6 +12,7 @@ const Navbar = () => {
         <a href="/home">Home</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
+        <a href="/studentLogin">Log in</a> 
         <Avatar isBordered color="secondary" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
 
       
