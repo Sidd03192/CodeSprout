@@ -4,13 +4,15 @@ import { getAuth } from "firebase/auth";
 import { Avatar } from "@nextui-org/react";
 import "@/components/Nav.css";
 import getUserData from "@/app/api/route";
+import { Profile } from "./profile";
+import { getAllUsers,getStudentDocuments } from "@/app/api/route";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const auth = getAuth();
-  // getUserData(auth.currentUser.uid);
+  let userData;
 
-
-
+ 
+  
   return (
     <div className="Navbar">
       <span className="nav-logo">Code Sprout</span>
@@ -18,8 +20,7 @@ const Navbar = () => {
         <a href="/home">Home</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
-
-      
+        <Profile ></Profile>
       </div>
       <div
         className={`nav-toggle ${isOpen && "open"}`}

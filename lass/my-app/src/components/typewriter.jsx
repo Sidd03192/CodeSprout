@@ -1,5 +1,6 @@
 "use client"
 
+import { joinPaths } from "@remix-run/router";
 import { cn2 } from "../app/utils/cn";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect } from "react";

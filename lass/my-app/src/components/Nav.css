@@ -43,7 +43,13 @@
   }  
   .Navbar > .nav-toggle {
     display: none;
-  }  
+
+  }
+
+
+
+
+
   @media (max-width: 700px) {
     .Navbar > .nav-items {
       position: absolute;
