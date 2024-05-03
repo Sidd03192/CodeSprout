@@ -1,11 +1,13 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import WordOfTheDay from '../components/WordOfTheDay.client'; // Import the new component
 import { TypewriterEffectSmooth } from "../components/typewriter";
 import { InfiniteMovingCardsDemo } from "../components/testemonials";
 import { Button } from "@nextui-org/react";
-
 export default function Landing() {
+
+
   const words = [
     {
       text: "Get",

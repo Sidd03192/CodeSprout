@@ -3,8 +3,14 @@ import React, { useState } from "react";
 import { getAuth } from "firebase/auth";
 import { Avatar } from "@nextui-org/react";
 import "@/components/Nav.css";
+import getUserData from "@/app/api/route";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const auth = getAuth();
+  // getUserData(auth.currentUser.uid);
+
+
+
   return (
     <div className="Navbar">
       <span className="nav-logo">Code Sprout</span>
@@ -12,7 +18,6 @@ const Navbar = () => {
         <a href="/home">Home</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
-        <Avatar isBordered color="secondary" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
 
       
       </div>
