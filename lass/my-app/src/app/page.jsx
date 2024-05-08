@@ -43,7 +43,6 @@ export default function Landing() {
             <span className="green_gradient fix-cut-off inline-block z-100">
               Cultivate Your Coding Potential
             </span>
-            
           </h1>
           <p className="desc font-poppins" style={{ margin: '0 auto' }}>
             Code Sprout is an ed-tech platform which helps students learn to code.
