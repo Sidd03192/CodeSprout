@@ -5,6 +5,7 @@ import WordOfTheDay from '../components/WordOfTheDay.client'; // Import the new 
 import { TypewriterEffectSmooth } from "../components/typewriter";
 import { InfiniteMovingCardsDemo } from "../components/testemonials";
 import { Button } from "@nextui-org/react";
+import { draftMode } from "next/headers";
 export default function Landing() {
 
 
@@ -22,6 +23,8 @@ export default function Landing() {
       className: "text-blue-500 dark:text-blue-500",
     },
   ];
+
+/* Basil */
 
   return (
     <>
