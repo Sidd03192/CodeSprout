@@ -6,6 +6,8 @@
 
 import "../auth.css";
 import React from 'react'
+import { redirect } from 'next/navigation'
+
 import "../../../styles/globals.css"
 import "../auth.css"
 import { useState, useEffect } from "react";
@@ -80,13 +82,13 @@ const Auth = () => {
       const result = await signInWithPopup(auth, provider);
       console.log("Google Sign-In Result:", result);
       cookies.set("auth-token", result.user.refreshToken);
-      console.log(auth.currentUser);
-
+      console.log("current user"+auth.currentUser.displayName);
+      
       // Handle successful sign-in with Google
       handleSignInSuccess("Google sign-in successful!", "success");
     } catch (err) {
       console.error("Google Sign-In Error:", err.message);
-      handleSignInSuccess("You've got to Sign up first... Bud", "warning");
+      handleSignInSuccess("Sorry, there was an error. Pleease make sure you have signed up !", "warning");
 
     }
   };
@@ -123,18 +125,16 @@ const Auth = () => {
   return (
     <div className="background-image">
 
+      <div className="w-screen"> 
       <div className=" login">
 
         <div className="input">
           <h1 className='blue_gradient head_text '> Login </h1>
-          <div className="logo">
-            <Image
+          <div className='logo-container'>
+            <img className='logo'
               src="/logo.png"
-              width={300}
-              height={400}
-            ></Image>
-
-
+             
+            ></img>
           </div>
           <Input
             type="email"
@@ -250,6 +250,7 @@ const Auth = () => {
           </Snackbar>
 
         </div>
+      </div>
       </div>
     </div>
 

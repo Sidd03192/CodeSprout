@@ -11,40 +11,58 @@
   z-index: 1000; /* High z-index to stay on top */
   overflow: hidden;
 }
-  .Navbar > .nav-logo {
-    font-weight: 700;
-    font-size: 21px;
-    margin: 15px;
-    color: #ffffff;
-  } 
-  .Navbar > .nav-items > a {
-    color: #ffffff;
-    font-size: 16px;
-    text-decoration: none;
-    margin: 15px;
-    position: relative;
-    opacity: 0.9;
-  }
-  .Navbar > .nav-items > a:hover {
-    opacity: 1;
-  } 
-  .Navbar > .nav-items > a::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background: #ffffff;
-    transition: all 0.45s;
-  }  
-  .Navbar > .nav-items > a:hover::before {
-    width: 100%;
-  }  
-  .Navbar > .nav-toggle {
-    display: none;
 
-  }
+.Navbar > .nav-logo {
+  font-weight: 700;
+  font-size: 21px;
+  margin: 15px;
+  color: #ffffff;
+} 
+
+.Navbar > .nav-items > a {
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: none;
+  margin: 15px;
+  position: relative;
+  opacity: 0.9;
+}
+
+.Navbar > .nav-items > a:hover {
+  opacity: 1;
+} 
+
+.Navbar > .nav-items > a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  transition: all 0.45s;
+}  
+
+.Navbar > .nav-items > a:hover::before {
+  width: 100%;
+}  
+
+.Navbar > .nav-toggle {
+  display: none;
+}
+
+.Profile {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: none;
+  margin: 15px;
+  position: relative;
+  opacity: 0.9;
+  vertical-align: middle;
+}
+
+
 
 
 
