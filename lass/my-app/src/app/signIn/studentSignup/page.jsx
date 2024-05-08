@@ -59,7 +59,6 @@ const {isOpen, onOpen, onOpenChange} = useDisclosure();
 const [read, setRead]=useState(false);
 const isLoginEnabled = true;
 const scrollBehavior ="outside";
-console.log(schools);
 const getSchools = async () => {
   try {
     const allSchools = [];
@@ -69,7 +68,6 @@ const getSchools = async () => {
       allSchools.push(newObject);
     });
     setSchools(allSchools); // Update 'schools' state
-    console.log(allSchools);
   } catch (error) {
     console.error("Error fetching collection data:", error);
   }
@@ -99,37 +97,47 @@ const setSkhool = (id) => {
 };
 const signInWithGoogle = async () => {
 
-
-    try {
-      console.log("Attempting Google Sign-In...");
-      const result = await signInWithPopup(auth, provider);
-      console.log("Google Sign-In Result:", result);
-
-      // Extract user information from the result object
-      const { email, displayName, photoURL } = result.user;
-
-      // Update states with the extracted user information
-      setEmail(email);
-      setUserData({...userData, email:email, userId:ath.currentUser.uid})
-      setUserData(prevState => ({
-        ...prevState,
-        userName: displayName,
-        userPicture: photoURL,
-        email: email
-      }));
-
-      cookies.set("auth-token", result.user.refreshToken);
-
-      // Update Firestore database with user information
-      updateUserDataInFirestore(email, displayName, photoURL);
-
-      // Handle sign-in success
-      handleSignInSuccess("Google sign-in successful!", "success");
-
-    } catch (err) {
-      console.error("Google Sign-In Error:", err.message);
-      handleSignInSuccess("Problem with Google Sign in ", "warning");
+    if (userData.school !=""&& userData.school!=null && userData.userName!=null)
+    {
+      try {
+        console.log("Attempting Google Sign-In...");
+        const result = await signInWithPopup(auth, provider);
+        console.log(" new uid" +result.user.uid);
+        console.log("Google Sign-In Result:", result);
+  
+        // Extract user information from the result object
+        const { email, displayName, photoURL } = result.user;
+  
+        // Update states with the extracted user information
+        setEmail(email);
+        setUserData({...userData, userId:result.user.uid});
+  
+        setUserData({...userData, email:email, userId:result.user.uid})
+        setUserData(prevState => ({
+          ...prevState,
+          userName: displayName,
+          userPicture: photoURL,
+          email: email,
+          userId:result.user.uid
+        }));
+  
+        cookies.set("auth-token", result.user.refreshToken);
+  
+        // Update Firestore database with user information
+        updateUserDataInFirestore(email, displayName, photoURL);
+  
+        // Handle sign-in success
+        handleSignInSuccess("Google sign-in successful!", "success");
+  
+      } catch (err) {
+        console.error("Google Sign-In Error:", err.message);
+        handleSignInSuccess("Problem with Google Sign in ", "warning");
+      }
     }
+    else{
+      handleSignInSuccess("Please make sure to accept the terms and conditions & select your school","warning");
+    }
+    
   }
   const handleSignInSuccess = (message, fortune) => {
     setOpenSnackbar(true); // Open the Snackbar
@@ -141,7 +149,7 @@ const signInWithGoogle = async () => {
 
 const updateUserDataInFirestore = (Email, displayName, photoURL) => {
   const userDocRef = doc(db, 'users', auth.currentUser.uid);
-
+  console.log
   setDoc(userDocRef, {
     email: Email,
     userName: displayName,
@@ -191,55 +199,63 @@ const validateEmail = (email) => userData.email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-
 
 const handleSignIn = async (event) => {
   console.log("attempting sign up");
-  createUser();
 
   try {
     const result = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
     console.log("create user result:", result);
+    console.log(result.user.uid);
+ 
+    
     
 
-    
+      
       cookies.set("auth-token", result.user.refreshToken);
+      const newId = result.user.uid;
+      console.log(" new uid" +newId);
+setUserData({...userData, userId:newId});
+console.log(userData.userId);
+createUser(newId)
       handleSignInSuccess("Account Created !", "success");
 
     } catch (err) {
       console.error("Email/Password Sign-In Error:", err.message);
-      handleSignInSuccess("Problem Creating Account. Make sure your Password is 6+ characters! ", "warning");
+      handleSignInSuccess("Problem Creating Account. Make sure your Password is 6+ characters. This email may also already be in use. ", "warning");
     }
   };
 
 
-  const createUser = async () => {
+  
+
+  const createUser = async (id) => {
     console.log('userData:', userData);
-
+  
     try {
-      const docRef = await addDoc(collection(db, 'users'), {
-        ...userData,
-        school:school,
-
-        
-      });
-      console.log('Document written with ID:', docRef.id);
+      console.log("creating user with id " + id);
+      const userDocRef = doc(db, 'users', id); // Specify the document reference
+    await setDoc(userDocRef, userData); // Set document data
+    console.log('Document written with ID:', id); // Log the provided ID
     } catch (error) {
       console.error('Error adding document:', error);
     }
+  };
 
-  }
+  
   return (
     <div className="background-image">
+      <div className='w-screen'>
 
+      
       <div className=" login">
 
         <div className="input">
           <h1 className='blue_gradient head_text '> Sign up </h1>
-          <div className='logo'>
-            <Image
+          <div className='logo-container'>
+            <img className='logo'
               src="/logo.png"
-              width={300}
-              height={400}
-            ></Image>
+             
+            ></img>
           </div>
-          <Input
+          <Input className="hel"
             type="email"
             label="Email"
             placeholder="you@example.com"
@@ -457,6 +473,7 @@ const handleSignIn = async (event) => {
           </Snackbar>
 
         </div>
+      </div>
       </div>
     </div>
 

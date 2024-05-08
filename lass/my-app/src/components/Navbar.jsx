@@ -3,20 +3,35 @@ import React, { useState } from "react";
 import { getAuth } from "firebase/auth";
 import { Avatar } from "@nextui-org/react";
 import "@/components/Nav.css";
+import getUserData from "@/app/api/route";
+import { Profile } from "./profile";
+import { useRouter } from 'next/navigation'
+
+import { getAllUsers,getStudentDocuments } from "@/app/api/route";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const auth = getAuth();
+  let userData;
+  const router =useRouter();
+ 
+  
   return (
     <div className="Navbar">
       <span className="nav-logo">Code Sprout</span>
-      <div className={`nav-items ${isOpen && "open"}`}>
-        <a href="/home">Home</a>
-        <a href="/about">About</a>
+      <div className={`Navbar ${isOpen ? 'open' : ''}`}>
+      <div className="nav-logo">Logo</div>
+      <div className="nav-items">
+        <a href="/">Home</a>
+        <a href="/signIn/studentLogin">Student Login</a>
         <a href="/contact">Contact</a>
-        <a href="/studentLogin">Log in</a> 
-        <Avatar isBordered color="secondary" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-
-      
+        <div className="Profile">
+      <Profile/>
       </div>
+      </div>
+      
+     
+    </div>
+
       <div
         className={`nav-toggle ${isOpen && "open"}`}
         onClick={() => setIsOpen(!isOpen)}

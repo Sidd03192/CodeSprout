@@ -1,11 +1,15 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import WordOfTheDay from '../components/WordOfTheDay.client'; // Import the new component
 import { TypewriterEffectSmooth } from "../components/typewriter";
 import { InfiniteMovingCardsDemo } from "../components/testemonials";
+import "../styles/globals.css"
 import { Button } from "@nextui-org/react";
-
+import { draftMode } from "next/headers";
 export default function Landing() {
+
+
   const words = [
     {
       text: "Get",
@@ -21,25 +25,33 @@ export default function Landing() {
     },
   ];
 
+
   return (
     <>
-      <div className="h-screen w-screen dark:bg-dot-white/[0.2] bg-dot-black/[0.2] fixed"></div>
+      <div className="main">
+        <div className="gradient"></div>
+        
+      </div>
+      <div className="h-screen w-screen dark:bg-dot-white/[0.2] bg-dot-black/[0.2] fixed "></div>
       <div className="h-screen w-screen pt-20"> {/* Added padding-top here */}
-        <section className="w-full inline-block text-center mb-100">
-          <h1 className="head_text text-center">
+      
+        <section id="hi"className="w-full inline-block text-center mb-100">
+          <h1 className="head_text text-center ">
             <span className="mr-4 inline-block text-white">Code Sprout</span>
             <br className="max-md:hidden" />
-            <span className="green_gradient fix-cut-off inline-block">
+            <span className="green_gradient fix-cut-off inline-block z-100">
               Cultivate Your Coding Potential
             </span>
           </h1>
           <p className="desc font-poppins" style={{ margin: '0 auto' }}>
-            LASS is an online ed-tech platform which helps students learn to code at lightning speeds.
+            Code Sprout is an ed-tech platform which helps students learn to code.
           </p>
         </section>
         <div className="text-center flex justify-center items-center w-screen mt-10 text-5xl transform hover:-translate-y-1 transition-all duration-200">
           <TypewriterEffectSmooth className="typewriter" words={words} />
         </div>
+        
+        
         <div className="flex justify-center mb-0">
           <Link href="signIn/studentSignup">
             <Button radius="full" className="bg-gradient-to-tr from-blue-900 via-indigo-600 to-purple-900 text-white shadow-lg mr-10 mb-0">

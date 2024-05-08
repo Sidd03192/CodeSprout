@@ -127,14 +127,11 @@ const Auth = () => {
 
         <div className="input">
           <h1 className='blue_gradient head_text '> Login </h1>
-          <div className="logo">
-            <Image
+          <div className='logo-container'>
+            <img className='logo'
               src="/logo.png"
-              width={300}
-              height={400}
-            ></Image>
-
-
+             
+            ></img>
           </div>
           <Input
             type="email"
