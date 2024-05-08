@@ -46,7 +46,7 @@ export default function Landing() {
             
           </h1>
           <p className="desc font-poppins" style={{ margin: '0 auto' }}>
-            LASS is an online ed-tech platform which helps students learn to code at lightning speeds.
+            Code Sprout is an ed-tech platform which helps students learn to code.
           </p>
         </section>
         <div className="text-center flex justify-center items-center w-screen mt-10 text-5xl transform hover:-translate-y-1 transition-all duration-200">
