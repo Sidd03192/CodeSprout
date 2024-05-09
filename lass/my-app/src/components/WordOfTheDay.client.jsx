@@ -42,7 +42,7 @@ function WordOfTheDay() {
       setMessage('Correct!');
       setShowConfetti(true); // Show the confetti
       setCompleted(true); // Mark as completed
-      setTimeout(() => setShowConfetti(false), 4300); // Hide the confetti after 5 seconds
+      setTimeout(() => setShowConfetti(false), 4175); // Hide the confetti after 5 seconds
     } else {
       setMessage('Try again');
       setGuess(''); // Clear the input field
