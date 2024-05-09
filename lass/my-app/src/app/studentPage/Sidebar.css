@@ -1,0 +1,49 @@
+.sidebar {
+    background-color: #333;
+    color: white;
+    height: 100vh;  /* Full-height */
+    width: 250px;   /* Set the width */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1;      /* Stay on top */
+    top: 0;          /* Stay at the top */
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.username-section {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.classrooms h2 {
+    margin-top: 0;
+}
+
+.classrooms ul {
+    list-style: none;
+    padding: 0;
+}
+
+.classrooms li {
+    margin: 10px 0;
+}
+
+.add-button {
+    margin-top: auto; /* Pushes the button to the bottom */
+    background: #555;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    align-self: center;
+}
+
+.add-button:hover {
+    background-color: #777; /* Darker on hover */
+}

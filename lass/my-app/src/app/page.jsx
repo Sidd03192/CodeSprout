@@ -6,6 +6,7 @@ import { TypewriterEffectSmooth } from "../components/typewriter";
 import { InfiniteMovingCardsDemo } from "../components/testemonials";
 import "../styles/globals.css"
 import { Button } from "@nextui-org/react";
+import { draftMode } from "next/headers";
 export default function Landing() {
 
 
@@ -24,6 +25,7 @@ export default function Landing() {
     },
   ];
 
+
   return (
     <>
       <div className="main">
@@ -40,10 +42,9 @@ export default function Landing() {
             <span className="green_gradient fix-cut-off inline-block z-100">
               Cultivate Your Coding Potential
             </span>
-            
           </h1>
           <p className="desc font-poppins" style={{ margin: '0 auto' }}>
-            LASS is an online ed-tech platform which helps students learn to code at lightning speeds.
+            Code Sprout is an ed-tech platform which helps students learn to code.
           </p>
         </section>
         <div className="text-center flex justify-center items-center w-screen mt-10 text-5xl transform hover:-translate-y-1 transition-all duration-200">
