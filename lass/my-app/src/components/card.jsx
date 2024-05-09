@@ -1,5 +1,4 @@
-import React from "react";
-import {Card, CardBody, Image, Button, Slider} from "@nextui-org/react";
+import { Card, CardBody, Image } from "@nextui-org/react";
 
 
 export const UserCard=(props)=> {
