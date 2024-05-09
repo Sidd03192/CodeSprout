@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
 
 // This could be fetched from a server
