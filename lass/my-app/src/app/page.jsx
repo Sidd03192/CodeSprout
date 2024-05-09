@@ -30,7 +30,7 @@ export default function Landing() {
     <>
       <div className="main">
         <div className="gradient"></div>
-        
+         
       </div>
       <div className="h-screen w-screen dark:bg-dot-white/[0.2] bg-dot-black/[0.2] fixed "></div>
       <div className="h-screen w-screen pt-20"> {/* Added padding-top here */}
