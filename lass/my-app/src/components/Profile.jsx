@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
-import { Avatar } from "@nextui-org/react";
+import getUserData from "@/app/api/route";
+import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import getUserData from "@/app/api/route";
 
 export const Profile = ({ sendDataToParent }) => {
   const cookies = new Cookies();
