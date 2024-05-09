@@ -1,36 +1,75 @@
 "use client"
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { getAuth } from "firebase/auth";
+import { useRouter } from 'next/router';
 import { Avatar } from "@nextui-org/react";
 import "@/components/Nav.css";
-import getUserData from "@/app/api/route";
 import { Profile } from "./profile";
-import { useRouter } from 'next/navigation'
+import { onAuthStateChanged } from "firebase/auth";
+import getUserData from "@/app/api/route";
 
-import { getAllUsers,getStudentDocuments } from "@/app/api/route";
-const Navbar = () => {
+const Navbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const auth = getAuth();
-  let userData;
-  const router =useRouter();
- 
-  
+  // const router = useRouter();
+  const [userData, setUserData] = useState(null);
+  const [role, setRole] = useState("");
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Fetch user data only when the user is logged in
+        getUserData(user.uid)
+          .then((userData) => {
+            setUserData(userData);
+            setRole(userData.role);
+          })
+          .catch((error) => {
+            console.error("Error fetching user data:", error);
+          });
+      } else {
+        setUserData(null);
+        setRole("");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const receiveChildData = (data) => {
+    setRole(data.role);
+  };
+
+  const logout = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      console.log("Logged out successfully!");
+      router.reload(); // Reload the page after logout
+    });
+  };
+
   return (
     <div className="Navbar">
       <span className="nav-logo">Code Sprout</span>
       <div className={`Navbar ${isOpen ? 'open' : ''}`}>
-      <div className="nav-logo">Logo</div>
-      <div className="nav-items">
-        <a href="/">Home</a>
-        <a href="/signIn/studentLogin">Student Login</a>
-        <a href="/contact">Contact</a>
-        <div className="Profile">
-      <Profile/>
+        <div className="nav-logo">Logo</div>
+        <div className="nav-items">
+          <a href="/">Home</a>
+          <a href="/signIn/studentLogin">Student Login</a>
+          <a href="/contact">Contact</a>
+          {role ? (
+            <a href={`/dashboards/${role.toLowerCase()}`}>{role} Homepage</a>
+          ) : (
+            <></>
+          )}
+          <div className="Profile">
+          {userData && <Profile sendDataToParent={receiveChildData} />}
+
+          </div>
+        </div>
       </div>
-      </div>
-      
-     
-    </div>
 
       <div
         className={`nav-toggle ${isOpen && "open"}`}
@@ -43,33 +82,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-// "use client";
-// import {useRef} from 'react';
-// import React from "react";
-// import {FaBars, FaTimes} from "react-icons/fa";
-// import '@/components/Nav.css'
-// function Navbar(){
-// const navRef = useRef();
-
-// const showNavbar = () => {
-//     navRef.current.classList.toggle("responsive_nav");
-// }
-
-//     return (
-//         <header>
-//             <h3>Logo</h3>
-//                 <a href="/#">Home</a>
-//                 <a href="/#">My Work</a>
-//                 <a href="/#">Blog</a>
-//                 <a href="/#">About me</a>
-//                 <button className = "nav-btn nav-close-btn" onClick = {showNavbar}>
-//                     <FaTimes/>
-//                 </button>
-            
-//             <button className = "nav-btn" onClick = {showNavbar}>
-//                 <FaBars/>
-//             </button>
-//         </header>
-//     );
-// }
-// export default Navbar;

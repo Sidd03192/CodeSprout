@@ -1,5 +1,5 @@
 .Navbar {
-  height: 50px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,7 +8,7 @@
   top: 0; /* Align to the top */
   left: 0; /* Align to the left */
   right: 0; /* Stretch across the full width */
-  z-index: 1000; /* High z-index to stay on top */
+  z-index: 2; /* High z-index to stay on top */
   overflow: hidden;
 }
 

@@ -27,7 +27,7 @@ section{
   background: black;
   position: fixed;
   content: "";
-  
+  z-index: -1;
   width: 100%;
   height: 100%;
   top: 0;
