@@ -1,13 +1,10 @@
 "use client"
 
-import React, { useState, useEffect } from "react";
-import { getAuth } from "firebase/auth";
-import { useRouter } from 'next/router';
-import { Avatar } from "@nextui-org/react";
-import "@/components/Nav.css";
-import { Profile } from "./profile";
-import { onAuthStateChanged } from "firebase/auth";
 import getUserData from "@/app/api/route";
+import "@/components/Nav.css";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { Profile } from "./profile";
 
 const Navbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,7 +62,7 @@ const Navbar = (props) => {
             <></>
           )}
           <div className="Profile">
-          {userData && <Profile sendDataToParent={receiveChildData} />}
+            {userData && <Profile sendDataToParent={receiveChildData} />}
 
           </div>
         </div>
