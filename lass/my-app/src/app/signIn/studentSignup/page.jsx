@@ -222,7 +222,7 @@ export default function Page() {
     console.log('userData:', userData);
 
     try {
-      console.log("creating user with id " + id);
+      console.log("Created User ID:" + id);
       const userDocRef = doc(db, 'users', id); // Specify the document reference
       await setDoc(userDocRef, userData); // Set document data
       console.log('Document written with ID:', id); // Log the provided ID
