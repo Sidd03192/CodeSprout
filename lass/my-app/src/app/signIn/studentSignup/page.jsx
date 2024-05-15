@@ -207,7 +207,7 @@ export default function Page() {
       setUserData({ ...userData, userId: newId });
       console.log(userData.userId);
       createUser(newId)
-      handleSignInSuccess("Account Created !", "success");
+      handleSignInSuccess("Account Created!", "success");
 
     } catch (err) {
       console.error("Email/Password Sign-In Error:", err.message);
