@@ -14,7 +14,7 @@ const RootLayout = ({ children }) => {
             
             <body>
             
-            {/* <Navbar/> */}
+            <Navbar/>
   
                  
                     {children}
