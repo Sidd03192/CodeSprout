@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
 
 // This could be fetched from a server
@@ -42,7 +42,7 @@ function WordOfTheDay() {
       setMessage('Correct!');
       setShowConfetti(true); // Show the confetti
       setCompleted(true); // Mark as completed
-      setTimeout(() => setShowConfetti(false), 4300); // Hide the confetti after 5 seconds
+      setTimeout(() => setShowConfetti(false), 4175); // Hide the confetti after 5 seconds
     } else {
       setMessage('Try again');
       setGuess(''); // Clear the input field
@@ -54,14 +54,14 @@ function WordOfTheDay() {
   return (
     <div className="max-w-md mx-auto glassmorphism text-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3 p-5 mt-10 shadow-[0px_0px_20px_#00ff00] relative">
       {showConfetti && <Confetti className="absolute" />} {/* Show the confetti when showConfetti is true */}
-      <h2 className="font-bold text-xl mb-2 text-center">Word of the day</h2>
+      <h2 className="font-bold text-xl mb-2 text-center">Word Of The Day</h2>
       <p className="text-gray-300 text-base text-center">Hint: {todayWord.hint}</p>
       {completed ? (
         <div className="mt-4">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-12 w-12 mx-auto text-green-500">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
-          <p className="mt-4 text-center">Word of the day completed</p>
+          <p className="mt-4 text-center">Word Of The Day Complete!</p>
         </div>
       ) : (
         <form className="mt-4 " onSubmit={handleGuess}>

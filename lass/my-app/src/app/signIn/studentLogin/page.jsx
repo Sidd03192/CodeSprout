@@ -4,25 +4,22 @@
 // This is where the user will be cretated and that itself will be a seperate collection. 
 //we will use one tap sign in, so no pages. 
 
+import React from 'react';
 import "../auth.css";
-import React from 'react'
-import { redirect } from 'next/navigation'
 
-import "../../../styles/globals.css"
-import "../auth.css"
-import { useState, useEffect } from "react";
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import { Input } from "@nextui-org/react";
-import { MailIcon } from '../components/MailIcon';
+import { getAuth, onAuthStateChanged, sendEmailVerification, signInWithPopup } from "firebase/auth";
+import { useEffect, useState } from "react";
+import Cookies from "universal-cookie";
+import "../../../styles/globals.css";
+import { provider } from "../../firebase/firebase";
+import "../auth.css";
 import { EyeFilledIcon } from "../components/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "../components/EyeSlashFilledIcon";
-import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithPopup, sendEmailVerification } from "firebase/auth";
-import { provider } from "../../firebase/firebase";
-import Cookies from "universal-cookie";
-import { getAuth } from "firebase/auth";
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import { MailIcon } from '../components/MailIcon';
 
-import { Image } from "@nextui-org/react";
 
 
 const Auth = () => {

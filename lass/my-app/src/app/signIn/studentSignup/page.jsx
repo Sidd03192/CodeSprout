@@ -1,27 +1,20 @@
 "use client"
 
-import React from 'react'
-import "../../../styles/globals.css"
-import "../auth.css"
-import { useState, useEffect } from "react";
-import { Input, Link } from "@nextui-org/react";
-import { UserCard } from "../components/card"
-import { MailIcon } from '../components/MailIcon';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+import { Autocomplete, AutocompleteItem, Button, Checkbox, Input, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import Cookies from "universal-cookie";
+import "../../../styles/globals.css";
+import { db, provider } from "../../firebase/firebase";
+import "../auth.css";
 import { EyeFilledIcon } from "../components/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "../components/EyeSlashFilledIcon";
-import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithPopup, sendEmailVerification } from "firebase/auth";
-import { provider } from "../../firebase/firebase";
-import Cookies from "universal-cookie";
-import { getAuth } from "firebase/auth";
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, } from "@nextui-org/react";
-import { Checkbox } from "@nextui-org/react";
-import { db } from "../../firebase/firebase"; import { collection, addDoc, QueryStartAtConstraint, query } from 'firebase/firestore';
-import { doc, setDoc, getDocs } from 'firebase/firestore';
-import { Image } from "@nextui-org/react";
-import { Autocomplete, AutocompleteItem, } from "@nextui-org/react";
-import {animals} from "../data";
+import { MailIcon } from '../components/MailIcon';
+import { UserCard } from "../components/card";
+import { animals } from "../data";
 
 
 

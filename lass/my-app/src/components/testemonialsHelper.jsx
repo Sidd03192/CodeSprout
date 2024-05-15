@@ -1,7 +1,7 @@
 "use client";
-import "../styles/globals.css"
+import { useEffect, useRef, useState } from "react";
 import { cn3 } from "../app/utils/cn3";
-import React, { useEffect, useRef, useState } from "react";
+import "../styles/globals.css";
 
 export const InfiniteMovingCards = ({
   items,

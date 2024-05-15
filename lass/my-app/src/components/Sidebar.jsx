@@ -1,14 +1,13 @@
 "use client"
 import Image from "next/image";
-import "./sidebar.css"
-import { AiOutlineHome } from "react-icons/ai";
-import { BsPeople } from "react-icons/bs";
-import { TiContacts } from "react-icons/ti";
-import { FiMail } from "react-icons/fi";
-import { SidebarContext } from "./SidebarContext";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import Link from "next/link";
 import { useState } from "react";
+import { AiOutlineHome } from "react-icons/ai";
+import { BsPeople } from "react-icons/bs";
+import { FiMail } from "react-icons/fi";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { TiContacts } from "react-icons/ti";
+import "./sidebar.css";
 const sidebarItems = [
   {
     name: "Home",
