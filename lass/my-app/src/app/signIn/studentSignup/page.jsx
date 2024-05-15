@@ -203,7 +203,7 @@ export default function Page() {
 
       cookies.set("auth-token", result.user.refreshToken);
       const newId = result.user.uid;
-      console.log(" new uid" + newId);
+      console.log("New User ID:" + newId);
       setUserData({ ...userData, userId: newId });
       console.log(userData.userId);
       createUser(newId)
