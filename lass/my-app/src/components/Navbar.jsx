@@ -6,13 +6,15 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { Profile } from "./profile";
 
-const Navbar = (props) => {
+const Navbar = ({sendDataToLayout}) => {
   const [isOpen, setIsOpen] = useState(false);
   const auth = getAuth();
   // const router = useRouter();
   const [userData, setUserData] = useState(null);
   const [role, setRole] = useState("");
-
+  const [email,setEmail]=useState("");
+  const [userName, setUserName]= useState("");
+  const [classrooms, setClassrooms]= useState();
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -22,6 +24,12 @@ const Navbar = (props) => {
           .then((userData) => {
             setUserData(userData);
             setRole(userData.role);
+            setEmail(userData.email);
+            setUserName(userData.userName);
+            setClassrooms(userData.classrooms)
+            console.log(userData.role);
+            sendDataToLayout({ data: userData.email, role: userData.role, name: userData.name, classrooms:userData.classrooms  });
+
           })
           .catch((error) => {
             console.error("Error fetching user data:", error);
@@ -37,6 +45,7 @@ const Navbar = (props) => {
 
   const receiveChildData = (data) => {
     setRole(data.role);
+    console.log("received role");
   };
 
   const logout = () => {

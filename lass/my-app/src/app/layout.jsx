@@ -1,6 +1,6 @@
-import '@/styles/globals.css'
-import Navbar from "@/components/Navbar.jsx"
+import '@/styles/globals.css';
 import React from "react";
+import ConditionalNavbar from "@/components/ConditionalNavbar";
 import "@/components/Nav.css";
 
 export const metadata = {
@@ -10,19 +10,13 @@ export const metadata = {
 
 const RootLayout = ({ children }) => {
     return (
-        <html>
-            
+        <html lang="en">
             <body>
-            
-            <Navbar/>
-  
-                 
-                    {children}
-              
+                <ConditionalNavbar />
+                {children}
             </body>
         </html>
     );
-    
 };
 
 export default RootLayout;
