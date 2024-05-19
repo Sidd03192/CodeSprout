@@ -64,6 +64,7 @@ export const InfiniteMovingCards = ({
     }
   };
 
+
   return (
     <div
       ref={containerRef}
@@ -83,7 +84,7 @@ export const InfiniteMovingCards = ({
         {items.map((item, idx) => (
           <li
             id="monkey"
-            className="transform w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
+            className="transform transition-transform duration-500 ease-in-out w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px] hover:scale-110 hover:z-10"
             style={{
               background:
                 "linear-gradient(180deg, var(--slate-800), var(--slate-900)",
@@ -114,4 +115,5 @@ export const InfiniteMovingCards = ({
       </ul>
     </div>
   );
+
 };
