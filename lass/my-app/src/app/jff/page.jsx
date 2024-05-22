@@ -2,28 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { storage } from '@/app/firebase/firebase';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
+import { getFileData } from '../api/route';
 
 function Page() {
   const imageListRef = ref(storage, "codes/");
   const [fileUpload, setFileUpload] = useState(null);
   const [fileContent, setFileContent] = useState("");
 
-  useEffect(() => {
-    listAll(imageListRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          fetch(url)
-            .then(response => response.text())
-            .then(data => {
-              setFileContent(data);
-            })
-            .catch(error => {
-              console.error("Error reading file:", error);
-            });
-        });
-      });
-    });
-  }, []);
+  // console.log(getFileData("codes"));
 
   const uploadAndReadFile = () => {
     if (fileUpload == null) return;

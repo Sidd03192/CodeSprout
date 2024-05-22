@@ -3,7 +3,7 @@
 
 import { doc, getDocs,getDoc,collection,query,where } from "firebase/firestore"; // Import Firestore functions
 import { db } from "../firebase/firebase"; // Import your Firebase configuration
-
+import { storage } from "../firebase/firebase";
 // Function to retrieve user data based on userId
 async function getUserData(userId) {
     console.log("Searching for user with ID:", userId);
@@ -93,4 +93,22 @@ export async function getClassrooms(teacherId) {
       console.error("Error getting students data:", error);
       throw error; // Re-throw the error so it can be handled by the caller
     }
+  };
+
+  export const getFileData = (fileName) => {
+    const fileRef = ref(storage, `codes/${fileName}`);
+    getDownloadURL(fileRef)
+      .then((url) => {
+        fetch(url)
+          .then((response) => response.text())
+          .then((data) => {
+            setFileContent(data);
+          })
+          .catch((error) => {
+            console.error("Error reading file:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error getting download URL:", error);
+      });
   };
