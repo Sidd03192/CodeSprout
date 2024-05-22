@@ -1,42 +1,60 @@
 "use client"
-
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { storage } from '@/app/firebase/firebase';
-import { ref, uploadBytes,listAll, getDownloadURL } from 'firebase/storage';
-function page() {
+import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 
-    const imageListRef = ref(storage, "codes/")
-    const [imageUpload, setImageUpload]= useState(null);
-    const [imageList, setImageList]=useState([]);
-    useEffect(()=>{
-      listAll(imageListRef).then((response)=>{
-        response.items.forEach((item)=>{
-          getDownloadURL(item).then((url)=>{
-            fetch(url).then()
-            
+function Page() {
+  const imageListRef = ref(storage, "codes/");
+  const [fileUpload, setFileUpload] = useState(null);
+  const [fileContent, setFileContent] = useState("");
+
+  useEffect(() => {
+    listAll(imageListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          fetch(url)
+            .then(response => response.text())
+            .then(data => {
+              setFileContent(data);
+            })
+            .catch(error => {
+              console.error("Error reading file:", error);
+            });
+        });
+      });
+    });
+  }, []);
+
+  const uploadAndReadFile = () => {
+    if (fileUpload == null) return;
+
+    const fileRef = ref(storage, `codes/${fileUpload.name}`);
+    uploadBytes(fileRef, fileUpload).then(() => {
+      alert("File uploaded");
+
+      getDownloadURL(fileRef).then((url) => {
+        fetch(url)
+          .then(response => response.text())
+          .then(data => {
+            setFileContent(data);
           })
-        })
-      })
-    },[])
-    console.log(imageList)
-    const uploadImage =()=>{
-        if (imageUpload ==null) return ;
-        const imageRef = ref(storage, `codes/codes `)
-        uploadBytes(imageRef, imageUpload).then(()=>{
-            alert("image uploaded");
-        })
-    }
+          .catch(error => {
+            console.error("Error reading file:", error);
+          });
+      });
+    });
+  };
+
   return (
     <div>
-      <input type="file" onChange={(event)=>{setImageUpload(event.target.files[0])}}/>
-      <button onClick={uploadImage}> upload </button>
-   
-    
-   
-   
-   
+      <input type="file" onChange={(event) => setFileUpload(event.target.files[0])} />
+      <button onClick={uploadAndReadFile}>Upload</button>
+      <div>
+        <h2>File Content:</h2>
+        <pre>{fileContent}</pre>
+      </div>
     </div>
-  )
+  );
 }
 
-export default page
+export default Page;
