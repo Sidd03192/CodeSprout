@@ -1,9 +1,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import WordOfTheDay from '../components/WordOfTheDay.client'; // Import the new component
-import { TypewriterEffectSmooth } from "../components/typewriter";
-import { InfiniteMovingCardsDemo } from "../components/testemonials";
+import WordOfTheDay from '../components/fun/aceternity/WordOfTheDay.client'; // Import the new component
+import { TypewriterEffectSmooth } from "../components/fun/aceternity/typewriter";
+import { InfiniteMovingCardsDemo } from "../components/fun/aceternity/testemonials";
 import "../styles/globals.css"
 import { Button } from "@nextui-org/react";
 import { draftMode } from "next/headers";

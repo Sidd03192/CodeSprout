@@ -3,15 +3,19 @@
 import "@/styles/globals.css";
 import React, { useEffect, useState } from "react";
 import Sidebar from "@/components/Sidebar";
-import { VortexDemo } from "@/components/vortexDemo";
+import { VortexDemo } from "@/components/fun/aceternity/vortexDemo";
 import getUserData from "@/app/api/route";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Tables from "@/components/fun/table";
-import Vortex from "@/components/vortex";
-import "./teacher.css"
+import Vortex from "@/components/fun/aceternity/vortex";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "@/app/firebase/firebase";
 export default function Page() {
   const [userName, setUserName] = useState("");
-  
+  const [classrooms, setClassrooms]=useState(null);
+
+
+
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -19,6 +23,7 @@ export default function Page() {
         getUserData(user.uid)
           .then((userData) => {
             setUserName(userData.userName);
+            setClassrooms(userData.classrooms);
           })
           .catch((error) => {
             console.error("Error fetching user data:", error);
@@ -28,6 +33,13 @@ export default function Page() {
 
     return () => unsubscribe();
   }, []);
+
+
+  
+  
+
+
+
 
   return (
     <div className="w-[calc(100%-4rem)] mx-auto rounded-md h-screen overflow-hidden">
@@ -45,7 +57,7 @@ export default function Page() {
           "Teachers ignite the sparkes that change the world"
         </p>
      
-        <Tables />
+        <Tables type ={"dash"}classrooms={classrooms} className="w-[65%]"/>
 
       
       

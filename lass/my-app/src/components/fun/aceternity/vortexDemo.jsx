@@ -1,6 +1,5 @@
 import React from "react";
 import Vortex from "./vortex";
-import "../styles/globals.css"
 export function VortexDemo(props) {
   return (
     <div className="w-[calc(100%-4rem)] mx-auto rounded-md h-screen overflow-hidden">

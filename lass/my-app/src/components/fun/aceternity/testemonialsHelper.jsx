@@ -1,8 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { cn3 } from "../app/utils/cn3";
-import "../styles/globals.css";
-
+import { cn3 } from "../../../app/utils/cn3";
+import "@/styles/globals.css"
 export const InfiniteMovingCards = ({
   items,
   direction = "left",

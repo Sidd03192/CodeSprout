@@ -6,9 +6,8 @@ import Add from "./fun/Add";
 
 const SidebarContext = createContext();
 
-export default function Sidebar({ children }) {
+export default function Sidebar({ children,school,userName }) {
   const [expanded, setExpanded] = useState(true);
-
   return (
     <aside className="h-full bg-gradient-to-r from-zinc-900 to-zinc-800 ">
       <nav className="h-full flex flex-col  shadow-sm">
@@ -34,7 +33,7 @@ export default function Sidebar({ children }) {
     <div className={`flex justify-between items-center overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}`}>
     <div className="leading-4">
       <h4 className="font-semibold">Add a classroom</h4>
-      <span className="text-xs ">johndoe@gmail.com</span>
+      <span className="text-xs ">{school +" | "+ userName}</span>
     </div>
     <div className="ml-auto"> {/* Added ml-auto class here */}
       
@@ -50,11 +49,11 @@ export default function Sidebar({ children }) {
   );
 }
 
-export function SidebarItem({ icon, text, active, alert }) {
+export function SidebarItem({ icon, text, active, alert, onClick }) {
   const { expanded } = useContext(SidebarContext);
 
   return (
-    <li
+    <li onClick={onClick}
       className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${
         active ? "bg-gradient-to-tr from-green-200 to-indigo-100 text-green-800" : "hover:bg-gray-500 hover:text:gray-600 text-white"
       }`}
