@@ -61,24 +61,6 @@ To get started with Code Next, follow these steps:
 - **Check Feedback**: After grading, students can review their grades and feedback from teachers.
 - **Run Tests**: Run provided test cases to validate your code before submission.
 
-## Contributing
-
-We welcome contributions to Code Next! If you would like to contribute, please follow these steps:
-
-1. **Fork the repository**.
-2. **Create a new branch**:
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
-3. **Make your changes** and commit them:
-    ```bash
-    git commit -m "Add some feature"
-    ```
-4. **Push to the branch**:
-    ```bash
-    git push origin feature/your-feature-name
-    ```
-5. **Open a pull request**.
 
 ## License
 
