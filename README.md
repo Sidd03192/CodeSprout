@@ -1,4 +1,4 @@
-# Code Next - A Mini LMS for Coding Assignments
+# Code Sprout - A Mini LMS for Coding Assignments
 
 Code Next is a lightweight Learning Management System (LMS) built with Next.js, HTML, CSS (Tailwind), and NPM. It is designed to help teachers assign coding tasks to students, grade their submissions, and provide detailed feedback on code quality, functionality, and testing.
 
